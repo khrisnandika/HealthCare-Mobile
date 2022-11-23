@@ -1,13 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:healthcare/core/const.dart';
-import 'package:healthcare/core/flutter_icons.dart';
 import 'package:healthcare/models/card_informasi.dart';
-import 'package:healthcare/models/shoe_model.dart';
-import 'package:healthcare/widgets/app_clipper.dart';
-import 'dart:math' as math;
 
 class DetailInformasi extends StatefulWidget {
   // const DetailInformasi({super.key});

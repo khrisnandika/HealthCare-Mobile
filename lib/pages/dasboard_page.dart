@@ -4,7 +4,11 @@ import 'package:healthcare/core/const.dart';
 import 'package:healthcare/core/flutter_icons.dart';
 import 'package:healthcare/models/card_informasi.dart';
 import 'package:healthcare/models/card_layanan.dart';
+import 'package:healthcare/models/shoe_model.dart';
 import 'package:healthcare/pages/detail_informasi.dart';
+import 'package:healthcare/pages/detail_page.dart';
+import 'package:healthcare/widgets/app_clipper.dart';
+import 'dart:math' as math;
 
 class DashboardPage extends StatefulWidget {
   const DashboardPage({super.key});
@@ -15,6 +19,8 @@ class DashboardPage extends StatefulWidget {
 
 class _DashboardPageState extends State<DashboardPage> {
   List<CardInformasi> cardInformasi = CardInformasi.list;
+  List<ShoeModel> shoeList = ShoeModel.list;
+  List<CardLayanan> cardLayanan = CardLayanan.list;
 
   @override
   Widget build(BuildContext context) {
@@ -108,15 +114,97 @@ class _DashboardPageState extends State<DashboardPage> {
                 ),
               ),
             ),
+            Container(
+              height: 150,
+              margin: EdgeInsets.symmetric(vertical: 16),
+              child: ListView.builder(
+                padding: EdgeInsets.symmetric(horizontal: 20),
+                itemCount: cardLayanan.length,
+                scrollDirection: Axis.horizontal,
+                physics: BouncingScrollPhysics(),
+                itemBuilder: (context, index) {
+                  return GestureDetector(
+                    onTap: () {},
+                    child: _buildLayanan(index),
+                  );
+                },
+              ),
+            ),
           ],
         ),
       ),
     );
   }
+
+  Widget _buildLayanan(int index) {
+    // return Container(
+    //   // width: 130,
+    //   // height: 160,
+    //   child: Stack(
+    //     children: [
+    //       Card(
+    //         shape: RoundedRectangleBorder(
+    //           borderRadius: BorderRadius.circular(20),
+    //         ),
+    //         child: Container(
+    //           width: 200,
+    //           height: 300,
+    //           padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+    //           child: Align(
+    //             alignment: Alignment.topCenter,
+    //             child: Text(
+    //               cardInformasi[index].nama,
+    //               style: TextStyle(
+    //                 color: kTitleTextColor,
+    //                 fontSize: 13,
+    //               ),
+    //             ),
+    //           ),
+    //         ),
+    //       ),
+    //     ],
+    //   ),
+    // );
+    return Container(
+      height: 150,
+      width: 250,
+      margin: EdgeInsets.symmetric(horizontal: 10),
+      decoration: BoxDecoration(
+        color: kHealthCareColor.withOpacity(0.8),
+        borderRadius: BorderRadius.circular(30),
+      ),
+      child: Stack(
+        children: [
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 30, vertical: 30),
+            child: Text(
+              cardLayanan[index].nama,
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 25,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.only(left: 80, top: 8),
+            child: Image.asset('assets/image/bg_shape.png'),
+          ),
+          Container(
+            margin: EdgeInsets.only(left: 160, top: 10),
+            child: Image.asset(
+              cardLayanan[index].imgPath,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
   Widget _buildInformasi(int index) {
     return Container(
       width: 130,
-      height: 160,
+      height: 150,
       child: Stack(
         children: [
           Card(
@@ -126,10 +214,7 @@ class _DashboardPageState extends State<DashboardPage> {
             child: Container(
               width: 105,
               height: 125,
-              padding: EdgeInsets.symmetric(
-                horizontal: 20,
-                vertical: 20,
-              ),
+              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
               child: Align(
                 alignment: Alignment.bottomCenter,
                 child: Text(
