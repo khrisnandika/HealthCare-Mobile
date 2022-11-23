@@ -4,6 +4,7 @@ import 'package:healthcare/core/const.dart';
 import 'package:healthcare/models/card_informasi.dart';
 import 'package:healthcare/models/card_layanan.dart';
 import 'package:healthcare/pages/detail_informasi.dart';
+import 'package:healthcare/pages/detail_layanan.dart';
 
 class DashboardPage extends StatefulWidget {
   const DashboardPage({super.key});
@@ -118,7 +119,16 @@ class _DashboardPageState extends State<DashboardPage> {
                 physics: BouncingScrollPhysics(),
                 itemBuilder: (context, index) {
                   return GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => DetailLayanan(
+                            cardLayanan: cardLayanan[index],
+                          ),
+                        ),
+                      );
+                    },
                     child: _buildLayanan(index),
                   );
                 },
@@ -186,8 +196,11 @@ class _DashboardPageState extends State<DashboardPage> {
           ),
           Container(
             margin: EdgeInsets.only(left: 160, top: 10),
-            child: Image.asset(
-              cardLayanan[index].imgPath,
+            child: Hero(
+              tag: "hero${cardLayanan[index].imgPath}",
+              child: Image.asset(
+                cardLayanan[index].imgPath,
+              ),
             ),
           ),
         ],

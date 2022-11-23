@@ -19,14 +19,14 @@ class CardLayanan {
       nama: "Layanan \nPerawat",
       desc:
           "Familiar but always fresh, the iconic Air Jordan 1 is remastered for today's sneakerhead culture. This Retro High OG version goes all in with full-grain leather, comfortable cushioning and classic design details.",
-      color: AppColors.blueColor,
+      color: kHealthCareColor,
       imgPath: "assets/image/perawat.png",
     ),
     CardLayanan(
       nama: "Layanan \nBidan",
       desc:
           "Familiar but always fresh, the iconic Air Jordan 1 is remastered for today's sneakerhead culture. This Retro High OG version goes all in with full-grain leather, comfortable cushioning and classic design details.",
-      color: AppColors.yellowColor,
+      color: kHealthCareColor,
       imgPath: "assets/image/bidan.png",
     ),
   ];
