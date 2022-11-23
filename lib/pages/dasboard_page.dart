@@ -1,14 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:healthcare/core/const.dart';
-import 'package:healthcare/core/flutter_icons.dart';
 import 'package:healthcare/models/card_informasi.dart';
 import 'package:healthcare/models/card_layanan.dart';
-import 'package:healthcare/models/shoe_model.dart';
 import 'package:healthcare/pages/detail_informasi.dart';
-import 'package:healthcare/pages/detail_page.dart';
-import 'package:healthcare/widgets/app_clipper.dart';
-import 'dart:math' as math;
 
 class DashboardPage extends StatefulWidget {
   const DashboardPage({super.key});
@@ -19,7 +14,6 @@ class DashboardPage extends StatefulWidget {
 
 class _DashboardPageState extends State<DashboardPage> {
   List<CardInformasi> cardInformasi = CardInformasi.list;
-  List<ShoeModel> shoeList = ShoeModel.list;
   List<CardLayanan> cardLayanan = CardLayanan.list;
 
   @override

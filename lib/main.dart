@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:healthcare/pages/NavigatorBar/navbar.dart';
 import 'package:healthcare/pages/dasboard_page.dart';
 import 'package:healthcare/pages/home_pages.dart';
 
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
           Theme.of(context).textTheme,
         )
       ),
-      home: DashboardPage(),
+      home: NavigasiBar(),
     );
   }
 }
