@@ -6,8 +6,8 @@ import 'package:healthcare/core/const.dart';
 import 'package:healthcare/pages/Akun/akun_profile.dart';
 import 'package:healthcare/pages/Chat/chatroom.dart';
 import 'package:healthcare/pages/DaftarPerawat/daftar_perawat.dart';
+import 'package:healthcare/pages/Dashboard/dasboard_page.dart';
 import 'package:healthcare/pages/NavigatorBar/global.dart';
-import 'package:healthcare/pages/dasboard_page.dart';
 
 class NavigasiBar extends StatefulWidget {
   const NavigasiBar({super.key});

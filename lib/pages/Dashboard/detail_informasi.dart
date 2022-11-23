@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:healthcare/core/const.dart';
+import 'package:healthcare/core/flutter_icons.dart';
 import 'package:healthcare/models/card_informasi.dart';
+import 'package:healthcare/models/shoe_model.dart';
+import 'package:healthcare/widgets/app_clipper.dart';
+import 'dart:math' as math;
 
 class DetailInformasi extends StatefulWidget {
   // const DetailInformasi({super.key});
@@ -18,18 +23,19 @@ class _DetailInformasiState extends State<DetailInformasi> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kBackgroundColor,
+      backgroundColor: widget.cardInformasi.color,
       body: SingleChildScrollView(
         child: Container(
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage(widget.cardInformasi.imgBg),
-              alignment: Alignment.topCenter,
-              fit: BoxFit.fitWidth,
-            ),
-          ),
+          // decoration: BoxDecoration(
+          //   color: kBackgroundColor,
+          //   image: DecorationImage(
+          //     image: AssetImage(widget.cardInformasi.imgBg),
+          //     alignment: Alignment.topCenter,
+          //     fit: BoxFit.fitWidth,
+          //   ),
+          // ),
           child: Column(
             children: [
               SizedBox(
@@ -58,59 +64,62 @@ class _DetailInformasiState extends State<DetailInformasi> {
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.21,
               ),
-              Container(
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  color: kBackgroundColor,
-                  borderRadius: BorderRadius.vertical(
-                    top: Radius.circular(50),
+              Expanded(
+                child: Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.height,
+                  decoration: BoxDecoration(
+                    color: kBackgroundColor,
+                    borderRadius: BorderRadius.vertical(
+                      top: Radius.circular(50),
+                    ),
                   ),
-                ),
-                child: Padding(
-                  padding: EdgeInsets.all(30),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text(
-                        "${widget.cardInformasi.nama}",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18,
-                          color: kTitleTextColor,
+                  child: Padding(
+                    padding: EdgeInsets.all(30),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          "${widget.cardInformasi.nama}",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18,
+                            color: kTitleTextColor,
+                          ),
                         ),
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Text(
-                        "${widget.cardInformasi.deskripsi}",
-                        style: TextStyle(
-                          height: 1.6,
-                          color: kTitleTextColor.withOpacity(0.7),
+                        SizedBox(
+                          height: 10,
                         ),
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      Text(
-                        "FAQ",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18,
-                          color: kTitleTextColor,
+                        Text(
+                          "${widget.cardInformasi.deskripsi}",
+                          style: TextStyle(
+                            height: 1.6,
+                            color: kTitleTextColor.withOpacity(0.7),
+                          ),
                         ),
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Text(
-                        widget.cardInformasi.faq,
-                        style: TextStyle(
-                          height: 1.6,
-                          color: kTitleTextColor.withOpacity(0.7),
+                        SizedBox(
+                          height: 20,
                         ),
-                      ),
-                    ],
+                        Text(
+                          "FAQ",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18,
+                            color: kTitleTextColor,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Text(
+                          widget.cardInformasi.faq,
+                          style: TextStyle(
+                            height: 1.6,
+                            color: kTitleTextColor.withOpacity(0.7),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),

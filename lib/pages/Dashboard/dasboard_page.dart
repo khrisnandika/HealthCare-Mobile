@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 import 'package:healthcare/core/const.dart';
 import 'package:healthcare/models/card_informasi.dart';
 import 'package:healthcare/models/card_layanan.dart';
-import 'package:healthcare/pages/detail_informasi.dart';
-import 'package:healthcare/pages/detail_layanan.dart';
+import 'package:healthcare/pages/Dashboard/detail_informasi.dart';
+import 'package:healthcare/pages/Dashboard/detail_layanan.dart';
 
 class DashboardPage extends StatefulWidget {
   const DashboardPage({super.key});
