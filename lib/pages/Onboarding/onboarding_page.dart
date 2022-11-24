@@ -2,6 +2,7 @@ import 'package:concentric_transition/concentric_transition.dart';
 import 'package:flutter/material.dart';
 import 'package:healthcare/core/const.dart';
 import 'package:healthcare/pages/Dashboard/dasboard_page.dart';
+import 'package:healthcare/pages/NavigatorBar/navbar.dart';
 import 'package:lottie/lottie.dart';
 
 import 'card_kesehatan.dart';
@@ -52,7 +53,7 @@ class OnboardingPage extends StatelessWidget {
         onFinish: () {
           Navigator.pushReplacement(
             context,
-            MaterialPageRoute(builder: (context) => const DashboardPage()),
+            MaterialPageRoute(builder: (context) => const NavigasiBar()),
           );
         },
       ),
