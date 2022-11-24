@@ -1,7 +1,6 @@
 import 'package:concentric_transition/concentric_transition.dart';
 import 'package:flutter/material.dart';
 import 'package:healthcare/core/const.dart';
-import 'package:healthcare/pages/Dashboard/dasboard_page.dart';
 import 'package:healthcare/pages/NavigatorBar/navbar.dart';
 import 'package:lottie/lottie.dart';
 

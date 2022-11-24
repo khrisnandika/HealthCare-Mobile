@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:healthcare/core/const.dart';
-import 'package:healthcare/core/flutter_icons.dart';
 import 'package:healthcare/pages/Akun/edit_akun.dart';
 import 'package:healthcare/pages/Akun/setting.dart';
 

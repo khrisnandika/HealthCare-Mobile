@@ -1,13 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:get/get.dart';
 import 'package:healthcare/core/const.dart';
 import 'package:healthcare/core/flutter_icons.dart';
 import 'package:healthcare/models/card_informasi.dart';
-import 'package:healthcare/models/shoe_model.dart';
-import 'package:healthcare/widgets/app_clipper.dart';
-import 'dart:math' as math;
 
 class DetailInformasi extends StatefulWidget {
   // const DetailInformasi({super.key});
@@ -24,45 +18,28 @@ class _DetailInformasiState extends State<DetailInformasi> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: widget.cardInformasi.color,
+      appBar: AppBar(
+        backgroundColor: widget.cardInformasi.color,
+        elevation: 0,
+        title: Text("Informasi ${widget.cardInformasi.nama}"),
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: Icon(
+            FlutterIcons.left_open_1,
+            color: Colors.white,
+          ),
+        ),
+      ),
       body: SingleChildScrollView(
         child: Container(
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
-          // decoration: BoxDecoration(
-          //   color: kBackgroundColor,
-          //   image: DecorationImage(
-          //     image: AssetImage(widget.cardInformasi.imgBg),
-          //     alignment: Alignment.topCenter,
-          //     fit: BoxFit.fitWidth,
-          //   ),
-          // ),
           child: Column(
             children: [
               SizedBox(
-                height: 10,
-              ),
-              Container(
-                margin: EdgeInsets.only(top: context.mediaQueryPadding.top),
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 15),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    InkWell(
-                      onTap: () {
-                        Navigator.pop(context);
-                      },
-                      child: SvgPicture.asset(
-                        'assets/icons/back.svg',
-                        height: 18,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.21,
+                height: MediaQuery.of(context).size.height * 0.10,
               ),
               Expanded(
                 child: Container(

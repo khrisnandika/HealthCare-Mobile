@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:healthcare/core/const.dart';
 import 'package:healthcare/core/flutter_icons.dart';
-import 'package:healthcare/pages/Akun/akun_profile.dart';
 
 class EditAkun extends StatefulWidget {
   @override

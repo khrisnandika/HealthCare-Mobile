@@ -141,34 +141,6 @@ class _DashboardPageState extends State<DashboardPage> {
   }
 
   Widget _buildLayanan(int index) {
-    // return Container(
-    //   // width: 130,
-    //   // height: 160,
-    //   child: Stack(
-    //     children: [
-    //       Card(
-    //         shape: RoundedRectangleBorder(
-    //           borderRadius: BorderRadius.circular(20),
-    //         ),
-    //         child: Container(
-    //           width: 200,
-    //           height: 300,
-    //           padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-    //           child: Align(
-    //             alignment: Alignment.topCenter,
-    //             child: Text(
-    //               cardInformasi[index].nama,
-    //               style: TextStyle(
-    //                 color: kTitleTextColor,
-    //                 fontSize: 13,
-    //               ),
-    //             ),
-    //           ),
-    //         ),
-    //       ),
-    //     ],
-    //   ),
-    // );
     return Container(
       height: 150,
       width: 250,

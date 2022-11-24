@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:healthcare/core/flutter_icons.dart';
 import 'package:healthcare/models/card_layanan.dart';
 import 'package:healthcare/widgets/app_clipper.dart';
-import 'dart:math' as math;
 
 class DetailLayanan extends StatefulWidget {
   const DetailLayanan({super.key, required this.cardLayanan});
