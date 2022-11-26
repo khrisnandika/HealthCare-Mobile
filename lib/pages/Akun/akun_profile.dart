@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:healthcare/core/const.dart';
 import 'package:healthcare/pages/Akun/edit_akun.dart';
 import 'package:healthcare/pages/Akun/setting.dart';
+import 'package:healthcare/pages/LoginRegister/login_pages.dart';
 
 class AkunProfile extends StatefulWidget {
   const AkunProfile({super.key});
@@ -172,7 +173,9 @@ class _AkunProfileState extends State<AkunProfile> {
                       vertical: 10,
                     ),
                     child: TextButton(
-                      onPressed: () => null,
+                      onPressed: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage(),));
+                      },
                       style: TextButton.styleFrom(
                         backgroundColor: kGreyColor.withOpacity(0.1),
                         shape: RoundedRectangleBorder(
