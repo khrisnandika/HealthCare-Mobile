@@ -11,9 +11,9 @@ class OnboardingPage extends StatelessWidget {
 
   final data = [
     CardKesehatanData(
-      title: "Pelayanan",
+      title: "Layanan Kami",
       subtitle:
-         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed posuere vitae ipsum non vehicula.",
+         "Kami memberikan pelayanan yang dapat membantu anda untuk mengatasi keluhan penyakit yang sedang diderita.",
       image: const AssetImage("assets/image/health1.png"),
       backgroundColor: kWhiteColor,
       titleColor: kHealthCareColor,
@@ -22,7 +22,7 @@ class OnboardingPage extends StatelessWidget {
     ),
     CardKesehatanData(
       title: "Dirumah Saja",
-      subtitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed posuere vitae ipsum non vehicula.",
+      subtitle: "Sekarang anda dapat menyampaikan keluhan yang sedang anda alami kepada perawat atau bidan tanpa keluar rumah.",
       image: const AssetImage("assets/image/health4.png"),
       backgroundColor: kOnboardingColor,
       titleColor: kTitleTextColor,
@@ -31,7 +31,7 @@ class OnboardingPage extends StatelessWidget {
     ),
     CardKesehatanData(
       title: "Lebih Mudah",
-      subtitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed posuere vitae ipsum non vehicula.",
+      subtitle: "Terdapat fitur chat yang dapat memudahkan anda dalam melakukan konsultasi secara online kepada perawat atau bidan.",
       image: const AssetImage("assets/image/health2.png"),
       backgroundColor: kHealthCareColor,
       titleColor: kWhiteColor,
