@@ -3,12 +3,17 @@ import 'package:healthcare/core/const.dart';
 import 'package:healthcare/pages/LoginRegister/register_pages.dart';
 import 'package:healthcare/pages/NavigatorBar/navbar.dart';
 import 'package:healthcare/widgets/animation.dart';
+import 'package:get/get.dart';
+import '../../models/login_register_password_controller.dart';
+
 void main() => runApp(MaterialApp(
       debugShowCheckedModeBanner: false,
       home: LoginPage(),
     ));
 
 class LoginPage extends StatelessWidget {
+  final passCtrl = Get.put(passwordController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,30 +30,6 @@ class LoginPage extends StatelessWidget {
                           fit: BoxFit.fill)),
                   child: Stack(
                     children: <Widget>[
-                      // Positioned(
-                      //   left: 30,
-                      //   width: 80,
-                      //   height: 200,
-                      //   child: FadeAnimation(1, Container(
-                      //     decoration: BoxDecoration(
-                      //       image: DecorationImage(
-                      //         image: AssetImage('image/light-1.png')
-                      //       )
-                      //     ),
-                      //   )),
-                      // ),
-                      // Positioned(
-                      //   left: 140,
-                      //   width: 80,
-                      //   height: 150,
-                      //   child: FadeAnimation(1.3, Container(
-                      //     decoration: BoxDecoration(
-                      //       image: DecorationImage(
-                      //         image: AssetImage('image/light-2.png')
-                      //       )
-                      //     ),
-                      //   )),
-                      // ),
                       Positioned(
                         right: 115,
                         top: 28,
@@ -59,8 +40,8 @@ class LoginPage extends StatelessWidget {
                             Container(
                               decoration: BoxDecoration(
                                   image: DecorationImage(
-                                      image:
-                                          AssetImage('assets/image/logoWhite.png'))),
+                                      image: AssetImage(
+                                          'assets/image/logoWhite.png'))),
                             )),
                       ),
                       Positioned(
@@ -107,7 +88,7 @@ class LoginPage extends StatelessWidget {
                                       border: Border(
                                           bottom:
                                               BorderSide(color: Colors.grey))),
-                                  child: TextField(
+                                  child: TextFormField(
                                     decoration: InputDecoration(
                                         border: InputBorder.none,
                                         hintText: "Username atau Email",
@@ -117,13 +98,24 @@ class LoginPage extends StatelessWidget {
                                 ),
                                 Container(
                                   padding: EdgeInsets.all(8.0),
-                                  child: TextField(
-                                    obscureText: true,
-                                    decoration: InputDecoration(
-                                        border: InputBorder.none,
-                                        hintText: "Password",
-                                        hintStyle:
-                                            TextStyle(color: Colors.grey[400])),
+                                  child: Obx(
+                                    () => TextFormField(
+                                      obscureText: passCtrl.showPassword.value,
+                                      decoration: InputDecoration(
+                                          suffixIcon: GestureDetector(
+                                            onTap: () {
+                                              passCtrl.showPass();
+                                            },
+                                            child: Icon(
+                                                passCtrl.showPassword.value
+                                                    ? Icons.visibility
+                                                    : Icons.visibility_off),
+                                          ),
+                                          border: InputBorder.none,
+                                          hintText: "Password",
+                                          hintStyle: TextStyle(
+                                              color: Colors.grey[400])),
+                                    ),
                                   ),
                                 )
                               ],

@@ -60,7 +60,7 @@ class _DetailPerawatState extends State<DetailPerawat> {
                     roundedBottom: false,
                   ),
                   child: Container(
-                    padding: EdgeInsets.only(top: 190, left: 20, right: 20),
+                    padding: EdgeInsets.only(top: 210, left: 20, right: 20),
                     color: Colors.white,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -70,7 +70,7 @@ class _DetailPerawatState extends State<DetailPerawat> {
                           child: Text(
                             "${widget.cardMedis.nama}",
                             style: TextStyle(
-                                fontSize: 32, fontWeight: FontWeight.w600),
+                                fontSize: 25, fontWeight: FontWeight.w600),
                           ),
                         ),
                         SizedBox(
