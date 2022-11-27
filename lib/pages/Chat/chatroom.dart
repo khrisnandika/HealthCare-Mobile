@@ -16,6 +16,9 @@ class _ChatRoomState extends State<ChatRoom> {
       appBar: AppBar(
         title: Text("chat"),
       ),
+      body: Column(children: [
+        Text("Nama"),
+      ],),
     );
   }
 }
