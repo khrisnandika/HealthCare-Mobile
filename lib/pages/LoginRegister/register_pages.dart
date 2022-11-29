@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:healthcare/core/const.dart';
 import 'package:healthcare/pages/LoginRegister/login_pages.dart';
 import 'package:healthcare/pages/NavigatorBar/navbar.dart';
 import 'package:healthcare/widgets/animation.dart';
+import 'package:get/get.dart';
+
+import '../../models/login_register_password_controller.dart';
 
 void main() => runApp(MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -10,6 +14,8 @@ void main() => runApp(MaterialApp(
     ));
 
 class RegisterPage extends StatelessWidget {
+  final passCtrl = Get.put(passwordController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,40 +27,46 @@ class RegisterPage extends StatelessWidget {
                 Container(
                   height: 400,
                   decoration: BoxDecoration(
-                      image: DecorationImage(
-                          image: AssetImage('assets/image/background2.png'),
-                          fit: BoxFit.fill)),
+                    image: DecorationImage(
+                      image: AssetImage('assets/image/background2.png'),
+                      fit: BoxFit.fill,
+                    ),
+                  ),
                   child: Stack(
                     children: <Widget>[
                       Positioned(
-                        right: 115,
-                        top: 28,
-                        width: 200,
+                        right: 50,
+                        top: 25,
+                        width: 300,
                         height: 200,
                         child: FadeAnimation(
-                            1.5,
-                            Container(
-                              decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                      image:
-                                          AssetImage('assets/image/logoWhite.png'))),
-                            )),
+                          1.5,
+                          Container(
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                image: AssetImage('assets/image/logoWhite.png'),
+                              ),
+                            ),
+                          ),
+                        ),
                       ),
                       Positioned(
                         child: FadeAnimation(
-                            1.6,
-                            Container(
-                              margin: EdgeInsets.only(top: 50),
-                              child: Center(
-                                child: Text(
-                                  "Daftar Akun",
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 28,
-                                      fontWeight: FontWeight.bold),
+                          1.6,
+                          Container(
+                            margin: EdgeInsets.only(top: 350),
+                            child: Center(
+                              child: Text(
+                                "Daftar",
+                                style: GoogleFonts.inter(
+                                  color: kHealthCareColor,
+                                  fontSize: 29,
+                                  fontWeight: FontWeight.bold,
                                 ),
                               ),
-                            )),
+                            ),
+                          ),
+                        ),
                       ),
                     ],
                   ),
@@ -82,8 +94,9 @@ class RegisterPage extends StatelessWidget {
                                   padding: EdgeInsets.all(8.0),
                                   decoration: BoxDecoration(
                                       border: Border(
-                                          bottom:
-                                              BorderSide(color: Colors.grey.withOpacity(0.100)))),
+                                          bottom: BorderSide(
+                                              color: Colors.grey
+                                                  .withOpacity(0.100)))),
                                   child: TextField(
                                     decoration: InputDecoration(
                                         border: InputBorder.none,
@@ -96,8 +109,9 @@ class RegisterPage extends StatelessWidget {
                                   padding: EdgeInsets.all(8.0),
                                   decoration: BoxDecoration(
                                       border: Border(
-                                          bottom:
-                                              BorderSide(color: Colors.grey.withOpacity(0.100)))),
+                                          bottom: BorderSide(
+                                              color: Colors.grey
+                                                  .withOpacity(0.100)))),
                                   child: TextField(
                                     decoration: InputDecoration(
                                         border: InputBorder.none,
@@ -110,26 +124,58 @@ class RegisterPage extends StatelessWidget {
                                   padding: EdgeInsets.all(8.0),
                                   decoration: BoxDecoration(
                                       border: Border(
-                                          bottom:
-                                              BorderSide(color: Colors.grey.withOpacity(0.100)))),
-                                  child: TextField(
-                                    obscureText: true,
-                                    decoration: InputDecoration(
+                                          bottom: BorderSide(
+                                              color: Colors.grey
+                                                  .withOpacity(0.100)))),
+                                  child: Obx(
+                                    () => TextFormField(
+                                      obscureText: passCtrl.showPassword.value,
+                                      decoration: InputDecoration(
+                                        suffixIcon: GestureDetector(
+                                          onTap: () {
+                                            passCtrl.showPass();
+                                          },
+                                          child: Icon(
+                                            passCtrl.showPassword.value
+                                                ? Icons.visibility
+                                                : Icons.visibility_off,
+                                            color: kGreyColor.withOpacity(0.5),
+                                          ),
+                                        ),
                                         border: InputBorder.none,
                                         hintText: "Password",
-                                        hintStyle:
-                                            TextStyle(color: Colors.grey[400])),
+                                        hintStyle: TextStyle(
+                                          color: Colors.grey[400],
+                                        ),
+                                      ),
+                                    ),
                                   ),
                                 ),
                                 Container(
                                   padding: EdgeInsets.all(8.0),
-                                  child: TextField(
-                                    obscureText: true,
-                                    decoration: InputDecoration(
-                                        border: InputBorder.none,
-                                        hintText: "Konfirmasi Password",
-                                        hintStyle:
-                                            TextStyle(color: Colors.grey[400])),
+                                  child: Obx(
+                                    () => TextFormField(
+                                      obscureText:
+                                          passCtrl.showConfirmPassword.value,
+                                      decoration: InputDecoration(
+                                          focusColor: kHealthCareColor,
+                                          suffixIcon: GestureDetector(
+                                            onTap: () {
+                                              passCtrl.showConfirmPass();
+                                            },
+                                            child: Icon(
+                                              passCtrl.showConfirmPassword.value
+                                                  ? Icons.visibility
+                                                  : Icons.visibility_off,
+                                              color:
+                                                  kGreyColor.withOpacity(0.5),
+                                            ),
+                                          ),
+                                          border: InputBorder.none,
+                                          hintText: "Konfirmasi Password",
+                                          hintStyle: TextStyle(
+                                              color: Colors.grey[400])),
+                                    ),
                                   ),
                                 ),
                               ],
@@ -165,7 +211,7 @@ class RegisterPage extends StatelessWidget {
                             ),
                           )),
                       SizedBox(
-                        height: 60,
+                        height: 40,
                       ),
                       FadeAnimation(
                         1.5,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:healthcare/core/const.dart';
 import 'package:healthcare/pages/LoginRegister/register_pages.dart';
 import 'package:healthcare/pages/NavigatorBar/navbar.dart';
@@ -25,40 +26,63 @@ class LoginPage extends StatelessWidget {
                 Container(
                   height: 400,
                   decoration: BoxDecoration(
-                      image: DecorationImage(
-                          image: AssetImage('assets/image/background2.png'),
-                          fit: BoxFit.fill)),
+                    image: DecorationImage(
+                      image: AssetImage('assets/image/background2.png'),
+                      fit: BoxFit.fill,
+                    ),
+                  ),
                   child: Stack(
                     children: <Widget>[
                       Positioned(
-                        right: 115,
-                        top: 28,
-                        width: 200,
+                        right: 50,
+                        top: 25,
+                        width: 300,
                         height: 200,
                         child: FadeAnimation(
-                            1.5,
-                            Container(
-                              decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                      image: AssetImage(
-                                          'assets/image/logoWhite.png'))),
-                            )),
+                          1.5,
+                          Container(
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                image: AssetImage('assets/image/logoWhite.png'),
+                              ),
+                            ),
+                          ),
+                        ),
                       ),
+                      // Positioned(
+                      //   child: FadeAnimation(
+                      //     1.6,
+                      //     Container(
+                      //       margin: EdgeInsets.only(top: 50),
+                      //       child: Center(
+                      //         child: Text(
+                      //           "Selamat Datang",
+                      //           style: TextStyle(
+                      //               color: Colors.white,
+                      //               fontSize: 28,
+                      //               fontWeight: FontWeight.bold),
+                      //         ),
+                      //       ),
+                      //     ),
+                      //   ),
+                      // ),
                       Positioned(
                         child: FadeAnimation(
-                            1.6,
-                            Container(
-                              margin: EdgeInsets.only(top: 50),
-                              child: Center(
-                                child: Text(
-                                  "Selamat Datang",
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 28,
-                                      fontWeight: FontWeight.bold),
+                          1.6,
+                          Container(
+                            margin: EdgeInsets.only(top: 350),
+                            child: Center(
+                              child: Text(
+                                "Masuk",
+                                style: GoogleFonts.inter(
+                                  color: kHealthCareColor,
+                                  fontSize: 29,
+                                  fontWeight: FontWeight.bold,
                                 ),
                               ),
-                            )),
+                            ),
+                          ),
+                        ),
                       ),
                     ],
                   ),
@@ -72,14 +96,16 @@ class LoginPage extends StatelessWidget {
                           Container(
                             padding: EdgeInsets.all(5),
                             decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(10),
-                                boxShadow: [
-                                  BoxShadow(
-                                      color: Color.fromRGBO(143, 148, 251, .2),
-                                      blurRadius: 20.0,
-                                      offset: Offset(0, 10))
-                                ]),
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(10),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Color.fromRGBO(143, 148, 251, .2),
+                                  blurRadius: 20.0,
+                                  offset: Offset(0, 10),
+                                ),
+                              ],
+                            ),
                             child: Column(
                               children: <Widget>[
                                 Container(
@@ -102,22 +128,26 @@ class LoginPage extends StatelessWidget {
                                     () => TextFormField(
                                       obscureText: passCtrl.showPassword.value,
                                       decoration: InputDecoration(
-                                          suffixIcon: GestureDetector(
-                                            onTap: () {
-                                              passCtrl.showPass();
-                                            },
-                                            child: Icon(
-                                                passCtrl.showPassword.value
-                                                    ? Icons.visibility
-                                                    : Icons.visibility_off),
+                                        suffixIcon: GestureDetector(
+                                          onTap: () {
+                                            passCtrl.showPass();
+                                          },
+                                          child: Icon(
+                                            passCtrl.showPassword.value
+                                                ? Icons.visibility
+                                                : Icons.visibility_off,
+                                            color: kGreyColor.withOpacity(0.5),
                                           ),
-                                          border: InputBorder.none,
-                                          hintText: "Password",
-                                          hintStyle: TextStyle(
-                                              color: Colors.grey[400])),
+                                        ),
+                                        border: InputBorder.none,
+                                        hintText: "Password",
+                                        hintStyle: TextStyle(
+                                          color: Colors.grey[400],
+                                        ),
+                                      ),
                                     ),
                                   ),
-                                )
+                                ),
                               ],
                             ),
                           )),
@@ -152,7 +182,7 @@ class LoginPage extends StatelessWidget {
                         ),
                       ),
                       SizedBox(
-                        height: 30,
+                        height: 40,
                       ),
                       FadeAnimation(
                         1.5,
