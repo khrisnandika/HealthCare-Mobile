@@ -16,7 +16,7 @@ class NavigasiBar extends StatefulWidget {
 
 class _NavigasiBarState extends State<NavigasiBar> {
   final global = Global();
-  List pindah = [DashboardPage(), DaftarPerawat(), ChatRoom(), AkunProfile()];
+  List pindah = [DashboardPage(), DaftarPerawat(), AkunProfile()];
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +42,7 @@ class _NavigasiBarState extends State<NavigasiBar> {
           ],
         ),
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 15),
+          padding: const EdgeInsets.symmetric(horizontal: 50.0, vertical: 15),
           child: GNav(
             selectedIndex: global.index,
             backgroundColor: kWhiteColor,
@@ -65,10 +65,10 @@ class _NavigasiBarState extends State<NavigasiBar> {
                 icon: Icons.list_alt_rounded,
                 text: 'Tenaga Medis',
               ),
-              GButton(
-                icon: Icons.chat_bubble_outline,
-                text: 'Pesan',
-              ),
+              // GButton(
+              //   icon: Icons.chat_bubble_outline,
+              //   text: 'Pesan',
+              // ),
               GButton(
                 icon: Icons.person_outline,
                 text: 'Profil',
