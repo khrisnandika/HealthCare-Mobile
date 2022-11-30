@@ -18,7 +18,6 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
-  TextEditingController namaController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController cPasswordController = TextEditingController();
@@ -27,26 +26,25 @@ class _RegisterPageState extends State<RegisterPage> {
   bool _obscureCText = true;
 
   void checkValues() {
-    String nama = namaController.text.trim();
     String email = emailController.text.trim();
     String password = passwordController.text.trim();
     String cPassword = cPasswordController.text.trim();
 
-    if (nama == "" || email == "" || password == "" || cPassword == "") {
+    if (email == "" || password == "" || cPassword == "") {
       UIHelper.showAlertDialog(
-          context, "Incomplete Data", "Please fill all the fields");
+          context, "Data tidak lengkap", "Harap lengkapi semua kolom");
     } else if (password != cPassword) {
-      UIHelper.showAlertDialog(context, "Password Mismatch",
-          "The passwords you entered do not match!");
+      UIHelper.showAlertDialog(context, "Kesalahan terjadi",
+          "Kata sandi yang anda masukkan tidak cocok!");
     } else {
-      signUp(nama, email, password);
+      signUp(email, password);
     }
   }
 
-  void signUp(String nama, String email, String password) async {
+  void signUp(String email, String password) async {
     UserCredential? credential;
 
-    UIHelper.showLoadingDialog(context, "Creating new account..");
+    UIHelper.showLoadingDialog(context, "Membuat akun baru..");
 
     try {
       credential = await FirebaseAuth.instance
@@ -55,15 +53,15 @@ class _RegisterPageState extends State<RegisterPage> {
       Navigator.pop(context);
 
       UIHelper.showAlertDialog(
-          context, "An error occured", ex.message.toString());
+          context, "Kesalahan terjadi", ex.message.toString());
     }
 
     if (credential != null) {
       String uid = credential.user!.uid;
-      User? user = credential.user;
-      user?.updateDisplayName(namaController.text);
+      // User? user = credential.user;
+      // user?.updateDisplayName(namaController.text);
       UserModel newUser =
-          UserModel(uid: uid, email: email, fullname: namaController.text, profilepic: "");
+          UserModel(uid: uid, email: email, fullname: "", profilepic: "");
       await FirebaseFirestore.instance
           .collection("users")
           .doc(uid)
@@ -159,26 +157,6 @@ class _RegisterPageState extends State<RegisterPage> {
                         ),
                         child: Column(
                           children: [
-                            Container(
-                              padding: EdgeInsets.all(8.0),
-                              decoration: BoxDecoration(
-                                border: Border(
-                                  bottom: BorderSide(
-                                    color: Colors.grey.withOpacity(0.100),
-                                  ),
-                                ),
-                              ),
-                              child: TextField(
-                                controller: namaController,
-                                decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  hintText: "Nama",
-                                  hintStyle: TextStyle(
-                                    color: Colors.grey[400],
-                                  ),
-                                ),
-                              ),
-                            ),
                             Container(
                               padding: EdgeInsets.all(8.0),
                               decoration: BoxDecoration(
@@ -292,20 +270,8 @@ class _RegisterPageState extends State<RegisterPage> {
                         ),
                       ),
                     ),
-                    // FadeAnimation(
-                    //   1.8,
-                    //   CupertinoButton(
-                    //     onPressed: () {
-                    //       checkValues();
-                    //     },
-                    //     color: Theme.of(context).colorScheme.secondary,
-                    //     child: Text(
-                    //       "Sign Up",
-                    //     ),
-                    //   ),
-                    // ),
                     SizedBox(
-                      height: 40,
+                      height: 30,
                     ),
                     FadeAnimation(
                       1.5,

@@ -33,7 +33,7 @@ class _LoginPageState extends State<LoginPage> {
 
     if (email == "" || password == "") {
       UIHelper.showAlertDialog(
-          context, "Incomplete Data", "Please fill all the fields");
+          context, "Data tidak lengkap", "Harap lengkapi semua kolom");
     } else {
       logIn(email, password);
     }
@@ -42,7 +42,7 @@ class _LoginPageState extends State<LoginPage> {
   void logIn(String email, String password) async {
     UserCredential? credential;
 
-    UIHelper.showLoadingDialog(context, "Logging In..");
+    UIHelper.showLoadingDialog(context, "Masuk..");
 
     try {
       credential = await FirebaseAuth.instance
@@ -53,7 +53,7 @@ class _LoginPageState extends State<LoginPage> {
 
       // Show Alert Dialog
       UIHelper.showAlertDialog(
-          context, "An error occured", ex.message.toString());
+          context, "Kesalahan terjadi", ex.message.toString());
     }
 
     if (credential != null) {
@@ -65,7 +65,7 @@ class _LoginPageState extends State<LoginPage> {
           UserModel.fromMap(userData.data() as Map<String, dynamic>);
 
       // Go to HomePage
-      print("Log In Successful!");
+      print("Masuk sukses!");
       Navigator.popUntil(context, (route) => route.isFirst);
       Navigator.pushReplacement(
         context,
