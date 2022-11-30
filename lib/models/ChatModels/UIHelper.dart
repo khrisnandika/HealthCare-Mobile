@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:healthcare/core/const.dart';
 
 class UIHelper {
-
   static void showLoadingDialog(BuildContext context, String title) {
     AlertDialog loadingDialog = AlertDialog(
       content: Container(
@@ -9,29 +9,26 @@ class UIHelper {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            
             CircularProgressIndicator(),
-
-            SizedBox(height: 30,),
-
+            SizedBox(
+              height: 30,
+            ),
             Text(title),
-
           ],
         ),
       ),
     );
 
     showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (context) {
-        return loadingDialog;
-      }
-    );
+        context: context,
+        barrierDismissible: false,
+        builder: (context) {
+          return loadingDialog;
+        });
   }
 
-
-  static void showAlertDialog(BuildContext context, String title, String content) {
+  static void showAlertDialog(
+      BuildContext context, String title, String content) {
     AlertDialog alertDialog = AlertDialog(
       title: Text(title),
       content: Text(content),
@@ -40,14 +37,20 @@ class UIHelper {
           onPressed: () {
             Navigator.pop(context);
           },
-          child: Text("Ok"),
+          child: Text(
+            "Oke",
+            style: TextStyle(
+              color: kHealthCareColor,
+            ),
+          ),
         ),
       ],
     );
 
-    showDialog(context: context, builder: (context) {
-      return alertDialog;
-    });
+    showDialog(
+        context: context,
+        builder: (context) {
+          return alertDialog;
+        });
   }
-
 }

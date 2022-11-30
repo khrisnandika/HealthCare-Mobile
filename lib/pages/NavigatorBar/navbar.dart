@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:healthcare/core/const.dart';
 import 'package:healthcare/pages/Akun/akun_profile.dart';
-import 'package:healthcare/pages/Chat/2hend.dart';
 import 'package:healthcare/pages/DaftarPerawat/daftar_perawat.dart';
 import 'package:healthcare/pages/Dashboard/dasboard_page.dart';
 import 'package:healthcare/pages/NavigatorBar/global.dart';

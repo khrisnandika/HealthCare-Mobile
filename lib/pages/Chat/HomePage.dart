@@ -2,6 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:healthcare/core/const.dart';
+import 'package:healthcare/core/flutter_icons.dart';
 import 'package:healthcare/pages/Chat/ChatRoomPage.dart';
 import 'package:healthcare/pages/Chat/SearchPage.dart';
 import 'package:healthcare/pages/NavigatorBar/navbar.dart';
@@ -27,6 +29,8 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: kHealthCareColor,
+        elevation: 0,
         leading: IconButton(
           onPressed: () {
             Navigator.push(
@@ -37,27 +41,16 @@ class _HomePageState extends State<HomePage> {
             );
           },
           icon: Icon(
-            Icons.arrow_back,
-            color: Colors.white,
+            FlutterIcons.left_open_1,
+            color: kBackgroundColor,
           ),
         ),
-        centerTitle: true,
-        title: Text("Chat App"),
-        // actions: [
-        //   IconButton(
-        //     onPressed: () async {
-        //       await FirebaseAuth.instance.signOut();
-        //       Navigator.popUntil(context, (route) => route.isFirst);
-        //       Navigator.pushReplacement(
-        //         context,
-        //         MaterialPageRoute(builder: (context) {
-        //           return MyHomePage(title: "");
-        //         }),
-        //       );
-        //     },
-        //     icon: Icon(Icons.exit_to_app),
-        //   ),
-        // ],
+        title: Text(
+          "Pesan",
+          style: TextStyle(
+            color: kBackgroundColor,
+          ),
+        ),
       ),
       body: SafeArea(
         child: Container(
@@ -142,7 +135,7 @@ class _HomePageState extends State<HomePage> {
                   );
                 } else {
                   return Center(
-                    child: Text("No Chats"),
+                    child: Text("Tidak ada pesan"),
                   );
                 }
               } else {
