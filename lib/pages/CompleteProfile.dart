@@ -1,14 +1,16 @@
 import 'dart:developer';
 import 'dart:io';
 
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:healthcare/core/const.dart';
 import 'package:healthcare/models/ChatModels/UserModel.dart';
 import 'package:healthcare/pages/Chat/HomePage.dart';
+import 'package:healthcare/pages/NavigatorBar/navbar.dart';
+import 'package:healthcare/widgets/radio_button.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -18,33 +20,33 @@ class CompleteProfile extends StatefulWidget {
   final UserModel userModel;
   final User firebaseUser;
 
-  const CompleteProfile({Key? key, required this.userModel, required this.firebaseUser}) : super(key: key);
+  const CompleteProfile(
+      {Key? key, required this.userModel, required this.firebaseUser})
+      : super(key: key);
 
   @override
   _CompleteProfileState createState() => _CompleteProfileState();
 }
 
 class _CompleteProfileState extends State<CompleteProfile> {
-
   File? imageFile;
   TextEditingController fullNameController = TextEditingController();
 
   void selectImage(ImageSource source) async {
     XFile? pickedFile = await ImagePicker().pickImage(source: source);
 
-    if(pickedFile != null) {
+    if (pickedFile != null) {
       cropImage(pickedFile);
     }
   }
 
   void cropImage(XFile file) async {
     File? croppedImage = await ImageCropper().cropImage(
-      sourcePath: file.path,
-      aspectRatio: CropAspectRatio(ratioX: 1, ratioY: 1),
-      compressQuality: 20
-    );
+        sourcePath: file.path,
+        aspectRatio: CropAspectRatio(ratioX: 1, ratioY: 1),
+        compressQuality: 20);
 
-    if(croppedImage != null) {
+    if (croppedImage != null) {
       setState(() {
         imageFile = croppedImage;
       });
@@ -52,55 +54,56 @@ class _CompleteProfileState extends State<CompleteProfile> {
   }
 
   void showPhotoOptions() {
-    showDialog(context: context, builder: (context) {
-      return AlertDialog(
-        title: Text("Upload Profile Picture"),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-
-            ListTile(
-              onTap: () {
-                Navigator.pop(context);
-                selectImage(ImageSource.gallery);
-              },
-              leading: Icon(Icons.photo_album),
-              title: Text("Select from Gallery"),
+    showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Text("Unggah Foto Profil"),
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                ListTile(
+                  onTap: () {
+                    Navigator.pop(context);
+                    selectImage(ImageSource.gallery);
+                  },
+                  leading: Icon(Icons.photo_album),
+                  title: Text("Pilih dari Galeri"),
+                ),
+                ListTile(
+                  onTap: () {
+                    Navigator.pop(context);
+                    selectImage(ImageSource.camera);
+                  },
+                  leading: Icon(Icons.camera_alt),
+                  title: Text("Ambil Gambar"),
+                ),
+              ],
             ),
-
-            ListTile(
-              onTap: () {
-                Navigator.pop(context);
-                selectImage(ImageSource.camera);
-              },
-              leading: Icon(Icons.camera_alt),
-              title: Text("Take a photo"),
-            ),
-
-          ],
-        ),
-      );
-    });
+          );
+        });
   }
 
   void checkValues() {
     String fullname = fullNameController.text.trim();
 
-    if(fullname == "" || imageFile == null) {
-      print("Please fill all the fields");
-      UIHelper.showAlertDialog(context, "Incomplete Data", "Please fill all the fields and upload a profile picture");
-    }
-    else {
+    if (fullname == "" || imageFile == null) {
+      print("Harap isi semua kolom");
+      UIHelper.showAlertDialog(context, "Data tidak lengkap",
+          "Harap isi semua kolom dan unggah foto profil");
+    } else {
       log("Uploading data..");
       uploadData();
     }
   }
 
   void uploadData() async {
+    UIHelper.showLoadingDialog(context, "Mengunggah gambar..");
 
-    UIHelper.showLoadingDialog(context, "Uploading image..");
-
-    UploadTask uploadTask = FirebaseStorage.instance.ref("profilepictures").child(widget.userModel.uid.toString()).putFile(imageFile!);
+    UploadTask uploadTask = FirebaseStorage.instance
+        .ref("profilepictures")
+        .child(widget.userModel.uid.toString())
+        .putFile(imageFile!);
 
     TaskSnapshot snapshot = await uploadTask;
 
@@ -110,17 +113,23 @@ class _CompleteProfileState extends State<CompleteProfile> {
     widget.userModel.fullname = fullname;
     widget.userModel.profilepic = imageUrl;
 
-    await FirebaseFirestore.instance.collection("users").doc(widget.userModel.uid).set(widget.userModel.toMap()).then((value) {
+    await FirebaseFirestore.instance
+        .collection("users")
+        .doc(widget.userModel.uid)
+        .set(widget.userModel.toMap())
+        .then((value) {
       log("Data uploaded!");
       Navigator.popUntil(context, (route) => route.isFirst);
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) {
-          return HomePage(userModel: widget.userModel, firebaseUser: widget.firebaseUser);
+          return NavigasiBar();
         }),
       );
     });
   }
+
+  int _value = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -128,49 +137,133 @@ class _CompleteProfileState extends State<CompleteProfile> {
       appBar: AppBar(
         centerTitle: true,
         automaticallyImplyLeading: false,
-        title: Text("Complete Profile"),
+        title: Text("Lengkapi Profil Anda"),
+        backgroundColor: kHealthCareColor,
       ),
       body: SafeArea(
         child: Container(
-          padding: EdgeInsets.symmetric(
-            horizontal: 40
-          ),
+          padding: EdgeInsets.symmetric(horizontal: 40),
           child: ListView(
             children: [
-
-              SizedBox(height: 20,),
-
-              CupertinoButton(
-                onPressed: () {
-                  showPhotoOptions();
-                },
-                padding: EdgeInsets.all(0),
-                child: CircleAvatar(
-                  radius: 60,
-                  backgroundImage: (imageFile != null) ? FileImage(imageFile!) : null,
-                  child: (imageFile == null) ? Icon(Icons.person, size: 60,) : null,
+              SizedBox(
+                height: 30,
+              ),
+              SizedBox(
+                height: 150,
+                width: 150,
+                child: Stack(
+                  fit: StackFit.expand,
+                  children: [
+                    CircleAvatar(
+                      radius: 20,
+                      backgroundColor: kHealthCareColor,
+                      child: CircleAvatar(
+                        radius: 80,
+                        backgroundImage:
+                            (imageFile != null) ? FileImage(imageFile!) : null,
+                        child: (imageFile == null)
+                            ? Image(
+                                image: AssetImage("assets/image/avatar.png"),
+                              )
+                            : null,
+                        backgroundColor: kHealthCareColor,
+                      ),
+                    ),
+                    Positioned(
+                      right: 90,
+                      bottom: 0,
+                      child: SizedBox(
+                        height: 46,
+                        width: 46,
+                        child: FloatingActionButton(
+                          onPressed: () {
+                            showPhotoOptions();
+                          },
+                          child: Icon(
+                            Icons.edit,
+                          ),
+                          backgroundColor: kHealthCareColor,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
-
-              SizedBox(height: 20,),
-
-              TextField(
+              SizedBox(
+                height: 30,
+              ),
+              TextFormField(
                 controller: fullNameController,
                 decoration: InputDecoration(
-                  labelText: "Full Name",
+                  hintText: "Nama Lengkap",
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(
+                      color: kHealthCareColor,
+                    ),
+                  ),
                 ),
               ),
-
-              SizedBox(height: 20,),
-
+              SizedBox(
+                height: 20,
+              ),
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.start,
+              //   children: [
+              //     Container(
+              //       height: 50,
+              //       child: Row(
+              //         children: [
+              //           Text("Laki-laki"),
+              //           SizedBox(
+              //             width: 20,
+              //           ),
+              //           CustomRadio(
+              //             value: 1,
+              //             grupValue: _value,
+              //             onChanged: (int? value) {
+              //               setState(() {
+              //                 _value = value!;
+              //               });
+              //             },
+              //           ),
+              //         ],
+              //       ),
+              //     ),
+              //     SizedBox(
+              //       width: 20,
+              //     ),
+              //     Container(
+              //       height: 50,
+              //       child: Row(
+              //         children: [
+              //           Text("Perempuan"),
+              //           SizedBox(
+              //             width: 20,
+              //           ),
+              //           CustomRadio(
+              //             value: 2,
+              //             grupValue: _value,
+              //             onChanged: (int? value) {
+              //               setState(() {
+              //                 _value = value!;
+              //               });
+              //             },
+              //           ),
+              //         ],
+              //       ),
+              //     ),
+              //   ],
+              // ),
+              SizedBox(
+                height: 20,
+              ),
               CupertinoButton(
                 onPressed: () {
                   checkValues();
                 },
-                color: Theme.of(context).colorScheme.secondary,
-                child: Text("Submit"),
+                color: kHealthCareColor,
+                child: Text("Simpan"),
               ),
-
             ],
           ),
         ),
