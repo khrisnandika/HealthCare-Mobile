@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:healthcare/core/const.dart';
 import 'package:healthcare/core/flutter_icons.dart';
 import 'package:healthcare/models/card_medis.dart';
-import 'package:healthcare/pages/Chat/2hend.dart';
 import 'package:healthcare/pages/Chat/Verdul.dart';
 import 'package:healthcare/widgets/app_clipper.dart';
 
@@ -195,7 +194,7 @@ class _DetailPerawatState extends State<DetailPerawat> {
                 horizontal: 50,
               ),
               decoration: BoxDecoration(
-                color: AppColors.greenColor,
+                color: widget.cardMedis.colorbg,
                 borderRadius: BorderRadius.all(Radius.circular(50)),
               ),
               child: Text(
