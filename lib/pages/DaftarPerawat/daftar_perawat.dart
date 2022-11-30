@@ -37,15 +37,15 @@ class _DaftarPerawatState extends State<DaftarPerawat> {
                 (data) {
                   return GestureDetector(
                     onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => DetailPerawat(
-                        data,
-                      ),
-                    ),
-                  );
-                },
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => DetailPerawat(
+                            data,
+                          ),
+                        ),
+                      );
+                    },
                     child: Container(
                       margin: EdgeInsets.only(left: 30, right: 30, bottom: 15),
                       padding: EdgeInsets.symmetric(horizontal: 24),

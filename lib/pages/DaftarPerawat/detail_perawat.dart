@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:healthcare/core/const.dart';
 import 'package:healthcare/core/flutter_icons.dart';
 import 'package:healthcare/models/card_medis.dart';
-import 'package:healthcare/pages/Chat/chatroom.dart';
+import 'package:healthcare/pages/Chat/2hend.dart';
+import 'package:healthcare/pages/Chat/Verdul.dart';
 import 'package:healthcare/widgets/app_clipper.dart';
 
 class DetailPerawat extends StatefulWidget {
@@ -184,7 +185,7 @@ class _DetailPerawatState extends State<DetailPerawat> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => ChatRoom(),
+                  builder: (context) => Verdul(widget.cardMedis),
                 ),
               );
             },

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:healthcare/core/const.dart';
-import 'package:healthcare/pages/Chat/chat.dart';
+import 'package:healthcare/pages/Chat/1hend.dart';
 
 class ChatRoom extends StatefulWidget {
   const ChatRoom({super.key});
