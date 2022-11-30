@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:healthcare/core/const.dart';
 import 'package:healthcare/pages/Akun/edit_akun.dart';
@@ -12,6 +13,27 @@ class AkunProfile extends StatefulWidget {
 }
 
 class _AkunProfileState extends State<AkunProfile> {
+
+  Future logOut(BuildContext context) async {
+  FirebaseAuth _auth = FirebaseAuth.instance;
+
+  try {
+    await _auth.signOut().then(
+      (value) {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (_) => LoginPage(),
+          ),
+        );
+      },
+    );
+  } catch (e) {
+    print("error");
+  }
+}
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -174,7 +196,7 @@ class _AkunProfileState extends State<AkunProfile> {
                     ),
                     child: TextButton(
                       onPressed: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage(),));
+                        logOut(context);
                       },
                       style: TextButton.styleFrom(
                         backgroundColor: kGreyColor.withOpacity(0.1),
