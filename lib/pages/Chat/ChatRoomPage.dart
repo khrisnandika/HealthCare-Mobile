@@ -93,6 +93,16 @@ class _ChatRoomPageState extends State<ChatRoomPage> {
       ),
       body: SafeArea(
         child: Container(
+          decoration: BoxDecoration(
+            color: Color(0xffEFE6DD).withOpacity(0.5),
+            image: DecorationImage(
+              colorFilter: new ColorFilter.mode(
+                  Colors.black.withOpacity(0.1), BlendMode.dstATop),
+              image: AssetImage(
+                'assets/image/pattern.jpg',
+              ), fit: BoxFit.fill
+            ),
+          ),
           child: Column(
             children: [
               // This is where the chats will go
@@ -127,9 +137,7 @@ class _ChatRoomPageState extends State<ChatRoomPage> {
                                     : MainAxisAlignment.start,
                                 children: [
                                   Container(
-                                    margin: EdgeInsets.symmetric(
-                                      vertical: 20
-                                    ),
+                                    margin: EdgeInsets.symmetric(vertical: 20),
                                     padding: EdgeInsets.symmetric(
                                       vertical: 10,
                                       horizontal: 10,
@@ -137,16 +145,14 @@ class _ChatRoomPageState extends State<ChatRoomPage> {
                                     decoration: BoxDecoration(
                                       color: (currentMessage.sender ==
                                               widget.userModel.uid)
-                                          ? Colors.grey
-                                          : Theme.of(context)
-                                              .colorScheme
-                                              .secondary,
+                                          ? Color(0xffE7FFDB)
+                                          : Colors.white,
                                       borderRadius: BorderRadius.circular(5),
                                     ),
                                     child: Text(
                                       currentMessage.text.toString(),
                                       style: TextStyle(
-                                        color: Colors.white,
+                                        color: Colors.black,
                                       ),
                                     ),
                                   ),
@@ -174,7 +180,7 @@ class _ChatRoomPageState extends State<ChatRoomPage> {
                 ),
               ),
               Container(
-                color: Colors.grey[200],
+                color: kBackgroundColor,
                 padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
                 child: Row(
                   children: [
@@ -184,7 +190,7 @@ class _ChatRoomPageState extends State<ChatRoomPage> {
                         maxLines: null,
                         decoration: InputDecoration(
                             border: InputBorder.none,
-                            hintText: "Enter message"),
+                            hintText: "Tulis pesan.."),
                       ),
                     ),
                     IconButton(
@@ -193,7 +199,7 @@ class _ChatRoomPageState extends State<ChatRoomPage> {
                       },
                       icon: Icon(
                         Icons.send,
-                        color: Theme.of(context).colorScheme.secondary,
+                        color: kHealthCareColor,
                       ),
                     ),
                   ],

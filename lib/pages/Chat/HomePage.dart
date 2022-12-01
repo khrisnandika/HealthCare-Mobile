@@ -148,11 +148,18 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: kHealthCareColor,
         onPressed: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) {
-            return SearchPage(
-                userModel: widget.userModel, firebaseUser: widget.firebaseUser);
-          }));
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) {
+                return SearchPage(
+                    userModel: widget.userModel,
+                    firebaseUser: widget.firebaseUser);
+              },
+            ),
+          );
         },
         child: Icon(Icons.search),
       ),

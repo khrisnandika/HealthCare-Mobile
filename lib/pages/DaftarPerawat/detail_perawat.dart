@@ -194,7 +194,7 @@ class _DetailPerawatState extends State<DetailPerawat> {
                 horizontal: 50,
               ),
               decoration: BoxDecoration(
-                color: widget.cardMedis.colorbg,
+                color: kHealthCareColor,
                 borderRadius: BorderRadius.all(Radius.circular(50)),
               ),
               child: Text(

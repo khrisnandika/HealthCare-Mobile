@@ -81,7 +81,7 @@ class _VerdulState extends State<Verdul> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: widget.cardMedis.colorbg,
+        backgroundColor: kHealthCareColor,
         elevation: 0,
         title: Text("Verifikasi dua langkah"),
         leading: IconButton(
@@ -118,24 +118,24 @@ class _VerdulState extends State<Verdul> {
                     decoration: InputDecoration(
                       enabledBorder: UnderlineInputBorder(
                         borderSide: BorderSide(
-                          color: widget.cardMedis.colorbg,
+                          color: kHealthCareColor,
                         ),
                       ),
                       focusedBorder: UnderlineInputBorder(
                         borderSide: BorderSide(
-                          color: widget.cardMedis.colorbg,
+                          color: kHealthCareColor,
                         ),
                       ),
                       prefixIcon: Icon(
                         Icons.person,
-                        color: widget.cardMedis.colorbg,
+                        color: kHealthCareColor,
                       ),
                       hintText: "Email",
                       hintStyle: TextStyle(
-                        color: widget.cardMedis.colorbg,
+                        color: kHealthCareColor,
                       ),
                       filled: true,
-                      fillColor: widget.cardMedis.color,
+                      fillColor: kHealthCareColor.withOpacity(0.1),
                     ),
                   ),
                   SizedBox(
@@ -147,17 +147,17 @@ class _VerdulState extends State<Verdul> {
                     decoration: InputDecoration(
                       enabledBorder: UnderlineInputBorder(
                         borderSide: BorderSide(
-                          color: widget.cardMedis.colorbg,
+                          color: kHealthCareColor,
                         ),
                       ),
                       focusedBorder: UnderlineInputBorder(
                         borderSide: BorderSide(
-                          color: widget.cardMedis.colorbg,
+                          color: kHealthCareColor,
                         ),
                       ),
                       prefixIcon: Icon(
                         Icons.vpn_key_sharp,
-                        color: widget.cardMedis.colorbg,
+                        color: kHealthCareColor,
                       ),
                       suffixIcon: GestureDetector(
                         onTap: () {
@@ -174,10 +174,10 @@ class _VerdulState extends State<Verdul> {
                       ),
                       hintText: "Password",
                       hintStyle: TextStyle(
-                        color: widget.cardMedis.colorbg,
+                        color: kHealthCareColor,
                       ),
                       filled: true,
-                      fillColor: widget.cardMedis.color,
+                      fillColor: kHealthCareColor.withOpacity(0.1),
                     ),
                   ),
                   SizedBox(
@@ -187,7 +187,7 @@ class _VerdulState extends State<Verdul> {
                     onPressed: () {
                       checkValues();
                     },
-                    color: widget.cardMedis.colorbg,
+                    color: kHealthCareColor,
                     child: Text("Log In"),
                   ),
                 ],
