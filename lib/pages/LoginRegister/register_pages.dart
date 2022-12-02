@@ -9,6 +9,7 @@ import 'package:healthcare/models/ChatModels/UserModel.dart';
 import 'package:healthcare/pages/CompleteProfile.dart';
 import 'package:healthcare/pages/LoginRegister/login_pages.dart';
 import 'package:healthcare/widgets/animation.dart';
+import 'package:http/http.dart' as http;
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);
@@ -18,6 +19,9 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
+  TextEditingController namaController = TextEditingController();
+  TextEditingController alamatController = TextEditingController();
+  TextEditingController jkController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController cPasswordController = TextEditingController();
@@ -38,6 +42,7 @@ class _RegisterPageState extends State<RegisterPage> {
           "Kata sandi yang anda masukkan tidak cocok!");
     } else {
       signUp(email, password);
+      _simpan();
     }
   }
 
@@ -58,10 +63,16 @@ class _RegisterPageState extends State<RegisterPage> {
 
     if (credential != null) {
       String uid = credential.user!.uid;
-      // User? user = credential.user;
-      // user?.updateDisplayName(namaController.text);
-      UserModel newUser =
-          UserModel(uid: uid, email: email, fullname: "", profilepic: "");
+      User? user = credential.user;
+      user?.updateDisplayName(namaController.text);
+      UserModel newUser = UserModel(
+        uid: uid,
+        email: email,
+        fullname: namaController.text,
+        address: alamatController.text,
+        gender: jkController.text,
+        profilepic: "",
+      );
       await FirebaseFirestore.instance
           .collection("users")
           .doc(uid)
@@ -80,6 +91,23 @@ class _RegisterPageState extends State<RegisterPage> {
         },
       );
     }
+  }
+
+  _simpan() async {
+    final response = await http.post(
+      Uri.parse("http://10.0.2.2/healthcare-admin/api/insert.php"),
+      body: {
+        "nama": namaController.text,
+        "jk": jkController.text,
+        "alamat": alamatController.text,
+        "email": emailController.text,
+        "password": passwordController.text,
+      },
+    );
+    if (response.statusCode == 200) {
+      return true;
+    }
+    return false;
   }
 
   @override
@@ -157,6 +185,66 @@ class _RegisterPageState extends State<RegisterPage> {
                         ),
                         child: Column(
                           children: [
+                            Container(
+                              padding: EdgeInsets.all(8.0),
+                              decoration: BoxDecoration(
+                                border: Border(
+                                  bottom: BorderSide(
+                                    color: Colors.grey.withOpacity(0.100),
+                                  ),
+                                ),
+                              ),
+                              child: TextField(
+                                controller: namaController,
+                                decoration: InputDecoration(
+                                  border: InputBorder.none,
+                                  hintText: "Nama Lengkap",
+                                  hintStyle: TextStyle(
+                                    color: Colors.grey[400],
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Container(
+                              padding: EdgeInsets.all(8.0),
+                              decoration: BoxDecoration(
+                                border: Border(
+                                  bottom: BorderSide(
+                                    color: Colors.grey.withOpacity(0.100),
+                                  ),
+                                ),
+                              ),
+                              child: TextField(
+                                controller: alamatController,
+                                decoration: InputDecoration(
+                                  border: InputBorder.none,
+                                  hintText: "Alamat",
+                                  hintStyle: TextStyle(
+                                    color: Colors.grey[400],
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Container(
+                              padding: EdgeInsets.all(8.0),
+                              decoration: BoxDecoration(
+                                border: Border(
+                                  bottom: BorderSide(
+                                    color: Colors.grey.withOpacity(0.100),
+                                  ),
+                                ),
+                              ),
+                              child: TextField(
+                                controller: jkController,
+                                decoration: InputDecoration(
+                                  border: InputBorder.none,
+                                  hintText: "Jenis Kelamin",
+                                  hintStyle: TextStyle(
+                                    color: Colors.grey[400],
+                                  ),
+                                ),
+                              ),
+                            ),
                             Container(
                               padding: EdgeInsets.all(8.0),
                               decoration: BoxDecoration(
