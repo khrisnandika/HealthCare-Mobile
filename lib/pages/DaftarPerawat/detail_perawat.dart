@@ -78,6 +78,12 @@ class _DetailPerawatState extends State<DetailPerawat> {
                         ),
                         Row(
                           children: [
+                            Text("Email : "),
+                            Text("${widget.cardMedis.email}")
+                          ],
+                        ),
+                        Row(
+                          children: [
                             Text("Profesi : "),
                             Text("${widget.cardMedis.profesi}")
                           ],
