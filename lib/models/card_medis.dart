@@ -4,6 +4,7 @@ import 'package:healthcare/core/const.dart';
 class CardMedis {
   final int id;
   final String nama;
+  final String email;
   final String deskripsi;
   final String profesi;
   final String str;
@@ -16,6 +17,7 @@ class CardMedis {
   CardMedis({
     required this.id,
     required this.nama,
+    required this.email,
     required this.deskripsi,
     required this.profesi,
     required this.str,
@@ -30,6 +32,7 @@ class CardMedis {
     CardMedis(
       id: 1,
       nama: "Krisna Choiril Andika",
+      email: "krisna@gmail.com",
       deskripsi: "lorem ipsum",
       profesi: "Perawat",
       str: "1021012021910219",
@@ -42,6 +45,7 @@ class CardMedis {
     CardMedis(
       id: 1,
       nama: "Indra Prasetyo Wijaya",
+      email: "indra@gmail.com",
       deskripsi: "lorem ipsum",
       profesi: "Perawat",
       str: "1021012021910219",
@@ -54,6 +58,7 @@ class CardMedis {
     CardMedis(
       id: 1,
       nama: "Iqbal Maulana",
+      email: "iqbal@gmail.com",
       deskripsi: "lorem ipsum",
       profesi: "Perawat",
       str: "1021012021910219",
@@ -66,6 +71,7 @@ class CardMedis {
     CardMedis(
       id: 2,
       nama: "Fara Derliana",
+      email: "fara@gmail.com",
       deskripsi: "lorem ipsum",
       profesi: "Bidan",
       str: "1021012021910219",
@@ -78,6 +84,7 @@ class CardMedis {
     CardMedis(
       id: 2,
       nama: "Elisa Febrian Sholeha",
+      email: "elisa@gmail.com",
       deskripsi: "lorem ipsum",
       profesi: "Bidan",
       str: "1021012021910219",
