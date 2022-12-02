@@ -30,7 +30,6 @@ class CompleteProfile extends StatefulWidget {
 
 class _CompleteProfileState extends State<CompleteProfile> {
   File? imageFile;
-  TextEditingController fullNameController = TextEditingController();
 
   void selectImage(ImageSource source) async {
     XFile? pickedFile = await ImagePicker().pickImage(source: source);
@@ -85,12 +84,11 @@ class _CompleteProfileState extends State<CompleteProfile> {
   }
 
   void checkValues() {
-    String fullname = fullNameController.text.trim();
 
-    if (fullname == "" || imageFile == null) {
+    if (imageFile == null) {
       print("Harap isi semua kolom");
       UIHelper.showAlertDialog(context, "Data tidak lengkap",
-          "Harap isi semua kolom dan unggah foto profil");
+          "Harap unggah foto profil anda");
     } else {
       log("Uploading data..");
       uploadData();
@@ -108,9 +106,7 @@ class _CompleteProfileState extends State<CompleteProfile> {
     TaskSnapshot snapshot = await uploadTask;
 
     String? imageUrl = await snapshot.ref.getDownloadURL();
-    String? fullname = fullNameController.text.trim();
 
-    widget.userModel.fullname = fullname;
     widget.userModel.profilepic = imageUrl;
 
     await FirebaseFirestore.instance
@@ -137,7 +133,7 @@ class _CompleteProfileState extends State<CompleteProfile> {
       appBar: AppBar(
         centerTitle: true,
         automaticallyImplyLeading: false,
-        title: Text("Lengkapi Profil Anda"),
+        title: Text("Unggah Foto Profil Anda"),
         backgroundColor: kHealthCareColor,
       ),
       body: SafeArea(
@@ -191,20 +187,6 @@ class _CompleteProfileState extends State<CompleteProfile> {
               ),
               SizedBox(
                 height: 30,
-              ),
-              TextFormField(
-                controller: fullNameController,
-                decoration: InputDecoration(
-                  hintText: "Nama Lengkap",
-                  focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(
-                      color: kHealthCareColor,
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: 20,
               ),
               // Row(
               //   mainAxisAlignment: MainAxisAlignment.start,
