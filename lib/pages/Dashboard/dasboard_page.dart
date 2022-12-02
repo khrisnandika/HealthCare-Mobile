@@ -17,7 +17,6 @@ class DashboardPage extends StatefulWidget {
 }
 
 class _DashboardPageState extends State<DashboardPage> {
-
   List<CardInformasi> cardInformasi = CardInformasi.list;
   List<CardLayanan> cardLayanan = CardLayanan.list;
 
@@ -55,22 +54,20 @@ class _DashboardPageState extends State<DashboardPage> {
               margin: EdgeInsets.only(top: context.mediaQueryPadding.top),
             ),
             Padding(
-              padding: const EdgeInsets.fromLTRB(30, 20, 30, 5),
+              padding: const EdgeInsets.fromLTRB(30, 20, 30, 2),
               child: Text.rich(
                 TextSpan(
                   children: <TextSpan>[
                     TextSpan(
                       text: "Hi, ",
-                      style: GoogleFonts.montserrat(
-                        color: kTitleTextColor,
+                      style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 20,
                       ),
                     ),
                     TextSpan(
                       text: fullname,
-                      style: GoogleFonts.montserrat(
-                        color: kTitleTextColor,
+                      style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 20,
                       ),
@@ -86,7 +83,6 @@ class _DashboardPageState extends State<DashboardPage> {
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 32,
-                  color: kTitleTextColor,
                 ),
               ),
             ),
@@ -99,7 +95,6 @@ class _DashboardPageState extends State<DashboardPage> {
                 'Informasi',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  color: kTitleTextColor,
                   fontSize: 18,
                 ),
               ),
@@ -139,7 +134,6 @@ class _DashboardPageState extends State<DashboardPage> {
                 'Layanan Kami',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  color: kTitleTextColor,
                   fontSize: 18,
                 ),
               ),
@@ -234,7 +228,6 @@ class _DashboardPageState extends State<DashboardPage> {
                 child: Text(
                   cardInformasi[index].nama,
                   style: TextStyle(
-                    color: kTitleTextColor,
                     fontSize: 13,
                   ),
                 ),
