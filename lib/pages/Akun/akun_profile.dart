@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:healthcare/core/const.dart';
@@ -13,26 +14,44 @@ class AkunProfile extends StatefulWidget {
 }
 
 class _AkunProfileState extends State<AkunProfile> {
-
   Future logOut(BuildContext context) async {
-  FirebaseAuth _auth = FirebaseAuth.instance;
+    FirebaseAuth _auth = FirebaseAuth.instance;
 
-  try {
-    await _auth.signOut().then(
-      (value) {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (_) => LoginPage(),
-          ),
-        );
-      },
-    );
-  } catch (e) {
-    print("error");
+    try {
+      await _auth.signOut().then(
+        (value) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (_) => LoginPage(),
+            ),
+          );
+        },
+      );
+    } catch (e) {
+      print("error");
+    }
   }
-}
 
+  final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
+  final User? user = FirebaseAuth.instance.currentUser;
+  String fullname = '';
+
+  Future getDocId() async {
+    var result = await _firebaseFirestore
+        .collection('users')
+        .where('uid', isEqualTo: user?.uid)
+        .get();
+    setState(() {
+      fullname = result.docs[0]['fullname'];
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getDocId();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -88,7 +107,7 @@ class _AkunProfileState extends State<AkunProfile> {
               height: 20,
             ),
             Text(
-              "Krisna",
+              fullname,
               style: TextStyle(
                 color: kTitleTextColor,
                 fontSize: 20,
@@ -99,7 +118,7 @@ class _AkunProfileState extends State<AkunProfile> {
               height: 5,
             ),
             Text(
-              "khrisnandika@gmail.com",
+              user!.email!,
               style: TextStyle(
                 fontSize: 17,
               ),
