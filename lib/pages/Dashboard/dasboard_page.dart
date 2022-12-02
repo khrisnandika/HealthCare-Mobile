@@ -1,5 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:healthcare/core/const.dart';
 import 'package:healthcare/models/card_informasi.dart';
 import 'package:healthcare/models/card_layanan.dart';
@@ -14,8 +17,29 @@ class DashboardPage extends StatefulWidget {
 }
 
 class _DashboardPageState extends State<DashboardPage> {
+
   List<CardInformasi> cardInformasi = CardInformasi.list;
   List<CardLayanan> cardLayanan = CardLayanan.list;
+
+  final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
+  final User? user = FirebaseAuth.instance.currentUser;
+  String fullname = '';
+
+  Future getDocId() async {
+    var result = await _firebaseFirestore
+        .collection('users')
+        .where('uid', isEqualTo: user?.uid)
+        .get();
+    setState(() {
+      fullname = result.docs[0]['fullname'];
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getDocId();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,24 +49,35 @@ class _DashboardPageState extends State<DashboardPage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(
-              height: 40,
+              height: 15,
             ),
             Container(
               margin: EdgeInsets.only(top: context.mediaQueryPadding.top),
             ),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 30),
-              child: Text(
-                'Hi, krisna',
-                style: TextStyle(
-                  fontWeight: FontWeight.w600,
-                  fontSize: 20,
-                  color: kTitleTextColor,
+              padding: const EdgeInsets.fromLTRB(30, 20, 30, 5),
+              child: Text.rich(
+                TextSpan(
+                  children: <TextSpan>[
+                    TextSpan(
+                      text: "Hi, ",
+                      style: GoogleFonts.montserrat(
+                        color: kTitleTextColor,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                      ),
+                    ),
+                    TextSpan(
+                      text: fullname,
+                      style: GoogleFonts.montserrat(
+                        color: kTitleTextColor,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                      ),
+                    ),
+                  ],
                 ),
               ),
-            ),
-            SizedBox(
-              height: 8,
             ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 30),
