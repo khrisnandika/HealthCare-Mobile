@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:healthcare/core/const.dart';
 
 class CardMedis {
-  final int id;
   final String nama;
   final String email;
   final String deskripsi;
@@ -15,7 +14,6 @@ class CardMedis {
   final String imgBg;
 
   CardMedis({
-    required this.id,
     required this.nama,
     required this.email,
     required this.deskripsi,
@@ -30,7 +28,6 @@ class CardMedis {
 
   static List<CardMedis> list = [
     CardMedis(
-      id: 1,
       nama: "Krisna Choiril Andika",
       email: "krisna@gmail.com",
       deskripsi: "lorem ipsum",
@@ -43,7 +40,6 @@ class CardMedis {
       imgBg: "",
     ),
     CardMedis(
-      id: 1,
       nama: "Indra Prasetyo Wijaya",
       email: "indra@gmail.com",
       deskripsi: "lorem ipsum",
@@ -56,7 +52,6 @@ class CardMedis {
       imgBg: "",
     ),
     CardMedis(
-      id: 1,
       nama: "Iqbal Maulana",
       email: "iqbal@gmail.com",
       deskripsi: "lorem ipsum",
@@ -69,7 +64,6 @@ class CardMedis {
       imgBg: "",
     ),
     CardMedis(
-      id: 2,
       nama: "Fara Derliana",
       email: "fara@gmail.com",
       deskripsi: "lorem ipsum",
@@ -82,8 +76,19 @@ class CardMedis {
       imgBg: "",
     ),
     CardMedis(
-      id: 2,
       nama: "Elisa Febrian Sholeha",
+      email: "elisa@gmail.com",
+      deskripsi: "lorem ipsum",
+      profesi: "Bidan",
+      str: "1021012021910219",
+      poli: "Poli Kandungan",
+      color: kOrangeColor.withOpacity(0.1),
+      colorbg: kOrangeColor,
+      imgPath: "assets/image/doctor3.png",
+      imgBg: "",
+    ),
+    CardMedis(
+      nama: "Siapa ya",
       email: "elisa@gmail.com",
       deskripsi: "lorem ipsum",
       profesi: "Bidan",
