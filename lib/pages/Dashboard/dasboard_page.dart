@@ -228,7 +228,7 @@ class _DashboardPageState extends State<DashboardPage> {
                 child: Text(
                   cardInformasi[index].nama,
                   style: TextStyle(
-                    fontSize: 13,
+                    fontSize: 12,
                   ),
                 ),
               ),
