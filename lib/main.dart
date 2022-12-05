@@ -17,7 +17,7 @@ var uuid = Uuid();
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-
+ 
   User? currentUser = FirebaseAuth.instance.currentUser;
   if(currentUser != null) {
     // Logged In

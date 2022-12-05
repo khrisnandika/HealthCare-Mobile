@@ -66,7 +66,7 @@ class _DashboardPageState extends State<DashboardPage> {
                       ),
                     ),
                     TextSpan(
-                      text: fullname,
+                      text: user!.displayName,
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 20,
