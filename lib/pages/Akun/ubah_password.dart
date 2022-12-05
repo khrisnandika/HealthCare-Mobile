@@ -1,9 +1,42 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:healthcare/core/const.dart';
 import 'package:healthcare/core/flutter_icons.dart';
+import 'package:healthcare/models/ChatModels/UIHelper.dart';
+import 'package:healthcare/pages/LoginRegister/login_pages.dart';
 
-class SettingScreen extends StatelessWidget {
+class ubahPassword extends StatefulWidget {
+  @override
+  State<ubahPassword> createState() => _ubahPasswordState();
+}
+
+class _ubahPasswordState extends State<ubahPassword> {
+  TextEditingController currentPasswordController = TextEditingController();
+  TextEditingController newPasswordController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController= TextEditingController();
+
+  void _changePassword(String currentPassword, String newPassword) async {
+    final user = await FirebaseAuth.instance.currentUser;
+    final cred = EmailAuthProvider.credential(
+        email: user!.email!, password: currentPasswordController.text);
+
+    user.reauthenticateWithCredential(cred).then((value) {
+      user.updatePassword(newPassword).then((_) {
+        UIHelper.showAlertDialog(
+            context, "Berhasil", "Kata Sandi anda berhasil diubah !");
+      }).catchError(
+        (error) {
+          UIHelper.showAlertDialog(
+              context, "Kesalahan terjadi", error.message.toString());
+        },
+      );
+    }).catchError((err) {
+      UIHelper.showAlertDialog(
+          context, "Kesalahan terjadi", err.message.toString());
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,10 +88,11 @@ class SettingScreen extends StatelessWidget {
                   vertical: 10,
                 ),
                 child: TextField(
+                  controller: currentPasswordController,
                   obscureText: true,
                   decoration: InputDecoration(
-                    labelText: 'Password Baru',
-                    hintText: 'Password Baru',
+                    labelText: 'Password Lama',
+                    hintText: 'Masukkan password lama anda',
                   ),
                 ),
               ),
@@ -68,21 +102,25 @@ class SettingScreen extends StatelessWidget {
                   vertical: 10,
                 ),
                 child: TextField(
+                  controller: newPasswordController,
                   obscureText: true,
                   decoration: InputDecoration(
-                    labelText: 'Konfirmasi Password Baru',
-                    hintText: 'Konfirmasi Password Baru',
+                    labelText: 'Password Baru',
+                    hintText: 'Masukkan password baru anda',
                   ),
                 ),
               ),
               SizedBox(
                 height: 30,
               ),
-              new SizedBox(
+              SizedBox(
                 height: 50,
                 width: 335,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    _changePassword(currentPasswordController.text,
+                        newPasswordController.text);
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: kHealthCareColor,
                     shape: RoundedRectangleBorder(
@@ -91,6 +129,9 @@ class SettingScreen extends StatelessWidget {
                   ),
                   child: Text('Simpan'),
                 ),
+              ),
+              SizedBox(
+                height: 20,
               ),
             ],
           ),

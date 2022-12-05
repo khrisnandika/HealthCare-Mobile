@@ -2,8 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:healthcare/core/const.dart';
+import 'package:healthcare/pages/Akun/detail_setting.dart';
 import 'package:healthcare/pages/Akun/edit_akun.dart';
-import 'package:healthcare/pages/Akun/setting.dart';
+import 'package:healthcare/pages/Akun/ubah_password.dart';
 import 'package:healthcare/pages/LoginRegister/login_pages.dart';
 
 class AkunProfile extends StatefulWidget {
@@ -98,7 +99,7 @@ class _AkunProfileState extends State<AkunProfile> {
               height: 20,
             ),
             Text(
-              fullname.runtimeType == Null ? '-' : fullname.toString(),
+              user!.displayName.runtimeType == Null ? '-' : user!.displayName.toString(),
               style: TextStyle(
                 color: Colors.black,
                 fontSize: 20,
@@ -165,7 +166,7 @@ class _AkunProfileState extends State<AkunProfile> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => SettingScreen(),
+                    builder: (context) => DetailSetting(),
                   ),
                 );
               },

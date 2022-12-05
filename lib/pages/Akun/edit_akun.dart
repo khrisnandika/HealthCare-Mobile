@@ -1,7 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:healthcare/core/const.dart';
 import 'package:healthcare/core/flutter_icons.dart';
+import 'package:healthcare/models/ChatModels/UIHelper.dart';
 
 class EditAkun extends StatefulWidget {
   @override
@@ -9,47 +12,61 @@ class EditAkun extends StatefulWidget {
 }
 
 class _EditAkunState extends State<EditAkun> {
-  // final global = Global();
+  final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
+  final User? user = FirebaseAuth.instance.currentUser;
 
-  // final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
-  // final User? user = FirebaseAuth.instance.currentUser;
+  final TextEditingController _namaController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _alamatController = TextEditingController();
+  final TextEditingController _genderController = TextEditingController();
 
-  // final TextEditingController _namaController = TextEditingController();
-  // final TextEditingController _emailController = TextEditingController();
+  String alamat = '';
+  String gender = '';
 
-  // String alamat = '';
+  Future getDocId() async {
+    var result = await _firebaseFirestore
+        .collection('users')
+        .where('uid', isEqualTo: user?.uid)
+        .get();
+    setState(() {
+      alamat = result.docs[0]['address'];
+      gender = result.docs[0]['gender'];
+    });
+  }
 
-  // Future getDocId() async {
-  //   var result = await _firebaseFirestore
-  //       .collection('user_details')
-  //       .where('uid', isEqualTo: user?.uid)
-  //       .get();
-  //   setState(() {
-  //     alamat = result.docs[0]['alamat'];
-  //   });
-  // }
-  // Future editData() async {
-  //   if(_namaController.text!=''){
-  //     user!.updateDisplayName(_namaController.text);
+  Future editData() async {
+    try {
+      if (_namaController.text != '') {
+        user?.updateDisplayName(_namaController.text);
+        UIHelper.showAlertDialog(
+            context, "Berhasil", "Akun anda berhasil dihapus !");
+      }
+    } catch (e) {
+      UIHelper.showAlertDialog(context, "Kesalahan terjadi", e.toString());
+    }
 
-  //   };
-  //   // if(_emailController.text!=''){
-  //   //   user!.updateEmail(_emailController.text);
-  //   //   print('object');
-  //   // };
-  // }
-  // @override
-  // void initState() {
-  //   getData();
+    ;
+    // if(_emailController.text!=''){
+    //   user!.updateEmail(_emailController.text);
+    //   print('object');
+    // };
+  }
 
-  //   super.initState();
-  // }
-  // getData() {
-  //   setState(() {
-  //     _namaController.text = user!.displayName!;
-  //     _emailController.text= user!.email!;
-  //   });
-  // }
+  @override
+  void initState() {
+    getData();
+    getDocId();
+    super.initState();
+  }
+
+  getData() {
+    setState(() {
+      _namaController.text = user!.displayName!;
+      _emailController.text = user!.email!;
+      _alamatController.text = alamat;
+      _genderController.text = gender;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -128,7 +145,7 @@ class _EditAkunState extends State<EditAkun> {
                 vertical: 10,
               ),
               child: TextField(
-                // controller: _namaController,
+                controller: _namaController,
                 decoration: InputDecoration(
                     border: OutlineInputBorder(
                       borderRadius: new BorderRadius.circular(10),
@@ -139,13 +156,10 @@ class _EditAkunState extends State<EditAkun> {
                         color: kHealthCareColor,
                       ),
                     ),
-                    // labelText: 'Nama Lengkap',
-                    // labelStyle: GoogleFonts.montserrat(
-                    //   color: kHealthCareColor,
-                    //   fontSize: 14
-                    // ),
-                    // hintText: user!.displayName!,
-                    hintText: "Krisna",
+                    labelText: 'Nama Lengkap',
+                    labelStyle: GoogleFonts.montserrat(
+                        color: kHealthCareColor, fontSize: 14),
+                    hintText: user!.displayName!,
                     hintStyle: GoogleFonts.montserrat(fontSize: 14)),
               ),
             ),
@@ -155,8 +169,9 @@ class _EditAkunState extends State<EditAkun> {
                 vertical: 10,
               ),
               child: TextField(
-                // controller: _emailController,
+                controller: _emailController,
                 decoration: InputDecoration(
+                    enabled: false,
                     border: OutlineInputBorder(
                       borderRadius: new BorderRadius.circular(10),
                     ),
@@ -166,13 +181,10 @@ class _EditAkunState extends State<EditAkun> {
                         color: kHealthCareColor,
                       ),
                     ),
-                    // labelText: 'Email',
-                    // labelStyle: GoogleFonts.montserrat(
-                    //   color: kHealthCareColor,
-                    //   fontSize: 14
-                    // ),
-                    // hintText: user!.email!,
-                    hintText: "khrisnandika@gmail.com",
+                    labelText: 'Email',
+                    labelStyle: GoogleFonts.montserrat(
+                        color: kHealthCareColor, fontSize: 14),
+                    hintText: user!.email!,
                     hintStyle: GoogleFonts.montserrat(fontSize: 14)),
               ),
             ),
@@ -182,7 +194,9 @@ class _EditAkunState extends State<EditAkun> {
                 vertical: 10,
               ),
               child: TextField(
+                controller: _alamatController..text = alamat,
                 decoration: InputDecoration(
+                    enabled: false,
                     border: OutlineInputBorder(
                       borderRadius: new BorderRadius.circular(10),
                     ),
@@ -195,7 +209,30 @@ class _EditAkunState extends State<EditAkun> {
                     labelText: 'Alamat',
                     labelStyle: GoogleFonts.montserrat(
                         color: kHealthCareColor, fontSize: 14),
-                    hintText: 'masukkan alamat lengkap anda',
+                    hintStyle: GoogleFonts.montserrat(fontSize: 14)),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: 35,
+                vertical: 10,
+              ),
+              child: TextField(
+                controller: _genderController..text = gender,
+                decoration: InputDecoration(
+                    enabled: false,
+                    border: OutlineInputBorder(
+                      borderRadius: new BorderRadius.circular(10),
+                    ),
+                    focusedBorder: new OutlineInputBorder(
+                      borderRadius: new BorderRadius.circular(10),
+                      borderSide: BorderSide(
+                        color: kHealthCareColor,
+                      ),
+                    ),
+                    labelText: 'Jenis Kelamin',
+                    labelStyle: GoogleFonts.montserrat(
+                        color: kHealthCareColor, fontSize: 14),
                     hintStyle: GoogleFonts.montserrat(fontSize: 14)),
               ),
             ),
@@ -206,8 +243,7 @@ class _EditAkunState extends State<EditAkun> {
               height: 50,
               width: 325,
               child: ElevatedButton(
-                // onPressed: () async => await editData(),
-                onPressed: () => null,
+                onPressed: () async => await editData(),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: kHealthCareColor,
                   shape: RoundedRectangleBorder(
