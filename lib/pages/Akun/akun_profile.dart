@@ -68,15 +68,6 @@ class _AkunProfileState extends State<AkunProfile> {
             fontWeight: FontWeight.bold,
           ),
         ),
-        // leading: IconButton(
-        //   onPressed: () {
-        //     Navigator.pop(context);
-        //   },
-        //   icon: Icon(
-        //     FlutterIcons.left_open_1,
-        //     color: kTitleTextColor,
-        //   ),
-        // ),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -107,9 +98,9 @@ class _AkunProfileState extends State<AkunProfile> {
               height: 20,
             ),
             Text(
-              fullname,
+              fullname.runtimeType == Null ? '-' : fullname.toString(),
               style: TextStyle(
-                color: kTitleTextColor,
+                color: Colors.black,
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
               ),
@@ -118,7 +109,7 @@ class _AkunProfileState extends State<AkunProfile> {
               height: 5,
             ),
             Text(
-              user!.email!,
+              user!.email!.runtimeType == Null ? '-' : user!.email!.toString(),
               style: TextStyle(
                 fontSize: 17,
               ),
@@ -126,7 +117,7 @@ class _AkunProfileState extends State<AkunProfile> {
             SizedBox(
               height: 20,
             ),
-            new SizedBox(
+            SizedBox(
               height: 45,
               width: 200,
               child: ElevatedButton(
@@ -150,111 +141,134 @@ class _AkunProfileState extends State<AkunProfile> {
             SizedBox(
               height: 30,
             ),
-            Column(
-              children: [
-                Container(
-                  width: 450,
-                  height: 75,
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 40,
-                      vertical: 10,
-                    ),
-                    child: TextButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => SettingScreen(),
-                          ),
-                        );
-                      },
-                      style: TextButton.styleFrom(
-                        backgroundColor: kGreyColor.withOpacity(0.1),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10)),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 15),
-                            child: Image(
-                              image: AssetImage(
-                                'assets/icons/setting.png',
-                              ),
-                              width: 25,
-                            ),
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Text(
-                            'Setting',
-                            style: TextStyle(
-                                color: kTitleTextColor,
-                                fontSize: 18,
-                                fontWeight: FontWeight.w400),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            Column(
-              children: [
-                Container(
-                  width: 450,
-                  height: 75,
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 40,
-                      vertical: 10,
-                    ),
-                    child: TextButton(
-                      onPressed: () {
-                        logOut(context);
-                      },
-                      style: TextButton.styleFrom(
-                        backgroundColor: kGreyColor.withOpacity(0.1),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 15),
-                            child: Image(
-                              image: AssetImage(
-                                'assets/icons/logout.png',
-                              ),
-                              width: 25,
-                            ),
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Text(
-                            'Logout',
-                            style: TextStyle(
-                                color: kTitleTextColor,
-                                fontSize: 18,
-                                fontWeight: FontWeight.w400),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
+            _settingButton(context),
+            _logoutButton(context),
           ],
         ),
       ),
+    );
+  }
+
+  Column _settingButton(BuildContext context) {
+    return Column(
+      children: [
+        Container(
+          width: 450,
+          height: 75,
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: 40,
+              vertical: 10,
+            ),
+            child: TextButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => SettingScreen(),
+                  ),
+                );
+              },
+              style: TextButton.styleFrom(
+                backgroundColor: kGreyColor.withOpacity(0.1),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10)),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 15),
+                    child: Image(
+                      image: AssetImage(
+                        'assets/icons/setting.png',
+                      ),
+                      width: 25,
+                    ),
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Text(
+                    'Pengaturan',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                  SizedBox(
+                    width: 110,
+                  ),
+                  Icon(
+                    Icons.arrow_forward_ios,
+                    color: kTitleTextColor.withOpacity(0.3),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Column _logoutButton(BuildContext context) {
+    return Column(
+      children: [
+        Container(
+          width: 450,
+          height: 75,
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: 40,
+              vertical: 10,
+            ),
+            child: TextButton(
+              onPressed: () {
+                logOut(context);
+              },
+              style: TextButton.styleFrom(
+                backgroundColor: kGreyColor.withOpacity(0.1),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 15),
+                    child: Image(
+                      image: AssetImage(
+                        'assets/icons/logout.png',
+                      ),
+                      width: 25,
+                    ),
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Text(
+                    'Keluar',
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 18,
+                        fontWeight: FontWeight.w400),
+                  ),
+                  SizedBox(
+                    width: 150,
+                  ),
+                  Icon(
+                    Icons.arrow_forward_ios,
+                    color: kTitleTextColor.withOpacity(0.3),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
