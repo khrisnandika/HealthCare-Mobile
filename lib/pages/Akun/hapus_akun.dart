@@ -108,8 +108,8 @@ class _hapusPasswordState extends State<hapusPassword> {
                 height: 30,
               ),
               SizedBox(
-                height: 50,
-                width: 335,
+                height: MediaQuery.of(context).size.height * 0.065,
+                width: MediaQuery.of(context).size.width * 0.85,
                 child: ElevatedButton(
                   onPressed: () {
                     _deleteUser(emailController.text, passwordController.text);

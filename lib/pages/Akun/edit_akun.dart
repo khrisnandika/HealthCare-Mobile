@@ -39,7 +39,7 @@ class _EditAkunState extends State<EditAkun> {
       if (_namaController.text != '') {
         user?.updateDisplayName(_namaController.text);
         UIHelper.showAlertDialog(
-            context, "Berhasil", "Akun anda berhasil dihapus !");
+            context, "Berhasil", "Akun anda berhasil diubah !");
       }
     } catch (e) {
       UIHelper.showAlertDialog(context, "Kesalahan terjadi", e.toString());
@@ -240,8 +240,8 @@ class _EditAkunState extends State<EditAkun> {
               height: 20,
             ),
             new SizedBox(
-              height: 50,
-              width: 325,
+              height: MediaQuery.of(context).size.height * 0.065,
+              width: MediaQuery.of(context).size.width * 0.84,
               child: ElevatedButton(
                 onPressed: () async => await editData(),
                 style: ElevatedButton.styleFrom(

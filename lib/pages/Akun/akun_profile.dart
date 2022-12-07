@@ -99,7 +99,9 @@ class _AkunProfileState extends State<AkunProfile> {
               height: 20,
             ),
             Text(
-              user!.displayName.runtimeType == Null ? '-' : user!.displayName.toString(),
+              user!.displayName.runtimeType == Null
+                  ? '-'
+                  : user!.displayName.toString(),
               style: TextStyle(
                 color: Colors.black,
                 fontSize: 20,
@@ -198,9 +200,7 @@ class _AkunProfileState extends State<AkunProfile> {
                       fontWeight: FontWeight.w400,
                     ),
                   ),
-                  SizedBox(
-                    width: 110,
-                  ),
+                  Spacer(),
                   Icon(
                     Icons.arrow_forward_ios,
                     color: kTitleTextColor.withOpacity(0.3),
@@ -257,9 +257,7 @@ class _AkunProfileState extends State<AkunProfile> {
                         fontSize: 18,
                         fontWeight: FontWeight.w400),
                   ),
-                  SizedBox(
-                    width: 150,
-                  ),
+                  Spacer(),
                   Icon(
                     Icons.arrow_forward_ios,
                     color: kTitleTextColor.withOpacity(0.3),

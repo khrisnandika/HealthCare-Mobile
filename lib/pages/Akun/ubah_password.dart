@@ -114,8 +114,8 @@ class _ubahPasswordState extends State<ubahPassword> {
                 height: 30,
               ),
               SizedBox(
-                height: 50,
-                width: 335,
+                height: MediaQuery.of(context).size.height * 0.065,
+                width: MediaQuery.of(context).size.width * 0.85,
                 child: ElevatedButton(
                   onPressed: () {
                     _changePassword(currentPasswordController.text,
