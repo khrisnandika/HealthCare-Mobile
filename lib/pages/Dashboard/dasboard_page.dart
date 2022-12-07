@@ -226,7 +226,7 @@ class _DashboardPageState extends State<DashboardPage> {
               child: Align(
                 alignment: Alignment.bottomCenter,
                 child: Text(
-                  cardInformasi[index].nama,
+                  cardInformasi[index].poli,
                   style: TextStyle(
                     fontSize: 12,
                   ),

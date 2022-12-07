@@ -21,7 +21,7 @@ class _DetailInformasiState extends State<DetailInformasi> {
       appBar: AppBar(
         backgroundColor: widget.cardInformasi.color,
         elevation: 0,
-        title: Text("Informasi ${widget.cardInformasi.nama}"),
+        title: Text("Informasi ${widget.cardInformasi.poli}"),
         leading: IconButton(
           onPressed: () {
             Navigator.pop(context);

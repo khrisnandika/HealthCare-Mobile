@@ -94,7 +94,7 @@ class _DetailLayananState extends State<DetailLayanan> {
                         Text(
                           "${widget.cardLayanan.desc}",
                           style: TextStyle(
-                            color: Colors.black38,
+                            color: Colors.black54,
                           ),
                         ),
                         SizedBox(
