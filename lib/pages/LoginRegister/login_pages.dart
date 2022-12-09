@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +12,7 @@ import 'package:get/get.dart';
 import '../../models/ChatModels/UIHelper.dart';
 import '../../models/ChatModels/UserModel.dart';
 import '../../models/login_register_password_controller.dart';
+import 'package:http/http.dart' as http;
 
 void main() => runApp(MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -36,6 +39,7 @@ class _LoginPageState extends State<LoginPage> {
           context, "Data tidak lengkap", "Harap lengkapi semua kolom");
     } else {
       logIn(email, password);
+      prosesLogin();
     }
   }
 
@@ -73,6 +77,26 @@ class _LoginPageState extends State<LoginPage> {
           return NavigasiBar();
         }),
       );
+    }
+  }
+
+  prosesLogin() async {
+    final response = await http.post(
+      Uri.parse("http://10.0.2.2/healthcare-admin/api/login.php"),
+      body: {
+        "email": _emailController.text,
+        "password": _passwordController.text,
+      },
+    );
+    var dataUser = response.body;
+    print(dataUser);
+    
+    if (response.statusCode == 200) {
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => NavigasiBar(),
+          ));
     }
   }
 
@@ -203,7 +227,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     FadeAnimation(
                       2,
-                      GestureDetector(
+                      InkWell(
                         onTap: () {
                           checkValues();
                         },
