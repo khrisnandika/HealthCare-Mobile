@@ -188,7 +188,7 @@ class _VerdulState extends State<Verdul> {
                       checkValues();
                     },
                     color: kHealthCareColor,
-                    child: Text("Log In"),
+                    child: Text("Masuk"),
                   ),
                 ],
               ),
