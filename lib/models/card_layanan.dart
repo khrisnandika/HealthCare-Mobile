@@ -18,14 +18,14 @@ class CardLayanan {
     CardLayanan(
       nama: "Layanan \nPerawat",
       desc:
-          "Familiar but always fresh, the iconic Air Jordan 1 is remastered for today's sneakerhead culture. This Retro High OG version goes all in with full-grain leather, comfortable cushioning and classic design details.",
+          "Sebagai tenaga medis profesional, Perawat HealthCare memiliki kualifikasi yang dibutuhkan dalam menjalankan peran dan tugasnya. Adapun kualifikasi yang dimiliki oleh Perawat HealthCare di antaranya adalah lulus pendidikan tinggi keperawatan, memegang STR (Surat Tanda Registrasi), memiliki SIP (Surat Izin Praktik), hingga memiliki pengalaman sebagai perawat minimal tiga tahun lamanya. \n \nAdapun tugas dan peran yang diemban oleh seorang Perawat HealthCare yang memiliki kualifikasi di atas adalah sebagai berikut : \n\n-Menangani pasien yang sedang berkonsultasi. \n-Merekomendasikan obat sesuai resep dokter.",
       color: kHealthCareColor,
       imgPath: "assets/image/perawat.png",
     ),
     CardLayanan(
       nama: "Layanan \nBidan",
       desc:
-          "Familiar but always fresh, the iconic Air Jordan 1 is remastered for today's sneakerhead culture. This Retro High OG version goes all in with full-grain leather, comfortable cushioning and classic design details.",
+          "Sebagai tenaga medis profesional, Bidan HealthCare memiliki kualifikasi yang dibutuhkan dalam menjalankan peran dan tugasnya. Adapun kualifikasi yang dimiliki oleh Bidan HealthCare di antaranya adalah lulus pendidikan tinggi kebidanan, memegang STR (Surat Tanda Registrasi), memiliki SIP (Surat Izin Praktik), hingga memiliki pengalaman sebagai bidan minimal tiga tahun lamanya. \n \nAdapun tugas dan peran yang diemban oleh seorang Bidan HealthCare yang memiliki kualifikasi di atas adalah sebagai berikut : \n\n-Menangani pasien yang sedang berkonsultasi. \n-Merekomendasikan obat sesuai resep dokter.",
       color: kHealthCareColor,
       imgPath: "assets/image/bidan.png",
     ),
