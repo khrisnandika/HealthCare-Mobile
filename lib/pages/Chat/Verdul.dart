@@ -13,9 +13,6 @@ import '../../models/ChatModels/UIHelper.dart';
 import '../../models/ChatModels/UserModel.dart';
 
 class Verdul extends StatefulWidget {
-  // final CardMedis cardMedis;
-
-  // Verdul(this.cardMedis);
 
   @override
   _VerdulState createState() => _VerdulState();
@@ -26,6 +23,9 @@ class _VerdulState extends State<Verdul> {
 
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+
+  final FocusNode _focusNode = FocusNode();
+  Color? color;
 
   void checkValues() {
     String email = emailController.text.trim();
@@ -79,6 +79,15 @@ class _VerdulState extends State<Verdul> {
 
   @override
   Widget build(BuildContext context) {
+    _focusNode.addListener(
+      () {
+        setState(
+          () {
+            color = _focusNode.hasFocus ? kHealthCareColor : Colors.black54;
+          },
+        );
+      },
+    );
     return Scaffold(
       appBar: AppBar(
         backgroundColor: kHealthCareColor,
@@ -142,6 +151,7 @@ class _VerdulState extends State<Verdul> {
                     height: 10,
                   ),
                   TextField(
+                    focusNode: _focusNode,
                     controller: passwordController,
                     obscureText: _obscureText,
                     decoration: InputDecoration(
@@ -167,9 +177,9 @@ class _VerdulState extends State<Verdul> {
                         },
                         child: Icon(
                           _obscureText
-                              ? Icons.visibility
-                              : Icons.visibility_off,
-                          color: kGreyColor.withOpacity(0.7),
+                              ? Icons.visibility_off
+                              : Icons.visibility,
+                          color: _focusNode.hasFocus? kHealthCareColor : kHealthCareColor.withOpacity(0.5),
                         ),
                       ),
                       hintText: "Password",

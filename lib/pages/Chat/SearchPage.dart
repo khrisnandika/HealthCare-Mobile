@@ -27,6 +27,9 @@ class SearchPage extends StatefulWidget {
 class _SearchPageState extends State<SearchPage> {
   TextEditingController searchController = TextEditingController();
 
+  final FocusNode _focusNode = FocusNode();
+  Color? color;
+
   Future<ChatRoomModel?> getChatroomModel(UserModel targetUser) async {
     ChatRoomModel? chatRoom;
 
@@ -69,6 +72,15 @@ class _SearchPageState extends State<SearchPage> {
 
   @override
   Widget build(BuildContext context) {
+    _focusNode.addListener(
+      () {
+        setState(
+          () {
+            color = _focusNode.hasFocus ? kHealthCareColor : Colors.black54;
+          },
+        );
+      },
+    );
     return Scaffold(
       appBar: AppBar(
         backgroundColor: kHealthCareColor,
@@ -93,8 +105,30 @@ class _SearchPageState extends State<SearchPage> {
           child: Column(
             children: [
               TextField(
+                focusNode: _focusNode,
                 controller: searchController,
-                decoration: InputDecoration(labelText: "Email Address"),
+                cursorColor: kHealthCareColor,
+                decoration: InputDecoration(
+                  labelText: "Alamat Email",
+                  hintText: "Masukkan alamat email perawat atau bidan",
+                  hintStyle: TextStyle(
+                    fontSize: 14.5,
+                  ),
+                  labelStyle: TextStyle(
+                    color:
+                        _focusNode.hasFocus ? kHealthCareColor : Colors.black54,
+                  ),
+                  focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: kHealthCareColor,
+                      ),
+                    ),
+                    enabledBorder: const UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Colors.black38,
+                      ),
+                    ),
+                ),
               ),
               SizedBox(
                 height: 20,
@@ -104,7 +138,7 @@ class _SearchPageState extends State<SearchPage> {
                   setState(() {});
                 },
                 color: kHealthCareColor,
-                child: Text("Search"),
+                child: Text("Cari"),
               ),
               SizedBox(
                 height: 20,
@@ -155,7 +189,7 @@ class _SearchPageState extends State<SearchPage> {
                             trailing: Icon(Icons.keyboard_arrow_right),
                           );
                         } else {
-                          return Text("No results found!");
+                          return Text("Tidak ada hasil yang ditemukan!");
                         }
                       } else if (snapshot.hasError) {
                         return Text("An error occured!");

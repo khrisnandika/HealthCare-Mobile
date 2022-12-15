@@ -167,7 +167,7 @@ class _ChatRoomPageState extends State<ChatRoomPage> {
                           );
                         } else {
                           return Center(
-                            child: Text("Say hi to your new friend"),
+                            child: Text("Say hi to your new friend",),
                           );
                         }
                       } else {
@@ -189,6 +189,7 @@ class _ChatRoomPageState extends State<ChatRoomPage> {
                   children: [
                     Flexible(
                       child: TextField(
+                        cursorColor: kHealthCareColor,
                         controller: messageController,
                         maxLines: null,
                         decoration: InputDecoration(
