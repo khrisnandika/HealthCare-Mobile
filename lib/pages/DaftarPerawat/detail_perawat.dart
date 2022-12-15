@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:healthcare/core/const.dart';
 import 'package:healthcare/core/flutter_icons.dart';
+import 'package:healthcare/models/ApiModels/perawat.dart';
 import 'package:healthcare/models/card_medis.dart';
 import 'package:healthcare/pages/Chat/Verdul.dart';
 import 'package:healthcare/widgets/app_clipper.dart';
 
 class DetailPerawat extends StatefulWidget {
-  final CardMedis cardMedis;
+  final PerawatApi perawatApi;
 
-  DetailPerawat(this.cardMedis);
+  DetailPerawat(this.perawatApi);
 
   @override
   State<DetailPerawat> createState() => _DetailPerawatState();
@@ -18,9 +19,9 @@ class _DetailPerawatState extends State<DetailPerawat> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: widget.cardMedis.colorbg,
+      backgroundColor: kHealthCareColor,
       appBar: AppBar(
-        backgroundColor: widget.cardMedis.colorbg,
+        backgroundColor: kHealthCareColor,
         elevation: 0,
         title: Text("Tenaga Medis"),
         leading: IconButton(
@@ -60,7 +61,7 @@ class _DetailPerawatState extends State<DetailPerawat> {
                     roundedBottom: false,
                   ),
                   child: Container(
-                    padding: EdgeInsets.only(top: 210, left: 20, right: 20),
+                    padding: EdgeInsets.only(top: 200, left: 20, right: 20),
                     color: Colors.white,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -68,7 +69,7 @@ class _DetailPerawatState extends State<DetailPerawat> {
                         Container(
                           width: 200,
                           child: Text(
-                            "${widget.cardMedis.nama}",
+                            widget.perawatApi.nama,
                             style: TextStyle(
                                 fontSize: 25, fontWeight: FontWeight.w600),
                           ),
@@ -79,32 +80,32 @@ class _DetailPerawatState extends State<DetailPerawat> {
                         Row(
                           children: [
                             Text("Email : "),
-                            Text("${widget.cardMedis.email}")
+                            Text(widget.perawatApi.email)
                           ],
                         ),
                         Row(
                           children: [
                             Text("Profesi : "),
-                            Text("${widget.cardMedis.profesi}")
+                            Text(widget.perawatApi.profesi)
                           ],
                         ),
                         Row(
                           children: [
                             Text("Poli : "),
-                            Text("${widget.cardMedis.poli}")
+                            Text(widget.perawatApi.id_poli)
                           ],
                         ),
                         Row(
                           children: [
                             Text("No. STR : "),
-                            Text("${widget.cardMedis.str}")
+                            Text(widget.perawatApi.no_str)
                           ],
                         ),
                         SizedBox(
                           height: 24,
                         ),
                         Text(
-                          "Tentang ${widget.cardMedis.profesi}",
+                          "Tentang Saya",
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 20,
@@ -114,7 +115,7 @@ class _DetailPerawatState extends State<DetailPerawat> {
                           height: 16,
                         ),
                         Text(
-                          "${widget.cardMedis.deskripsi}",
+                          widget.perawatApi.about,
                           style: TextStyle(
                             color: Colors.black38,
                           ),
@@ -133,7 +134,7 @@ class _DetailPerawatState extends State<DetailPerawat> {
               padding: const EdgeInsets.only(left: 20),
               child: Image(
                 width: MediaQuery.of(context).size.width * .50,
-                image: AssetImage("${widget.cardMedis.imgPath}"),
+                image: const AssetImage("assets/image/doctor2.png"),
               ),
             ),
           ],
@@ -190,7 +191,7 @@ class _DetailPerawatState extends State<DetailPerawat> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => Verdul(widget.cardMedis),
+                  builder: (context) => Verdul(),
                 ),
               );
             },
