@@ -14,7 +14,14 @@ class _ubahPasswordState extends State<ubahPassword> {
   TextEditingController currentPasswordController = TextEditingController();
   TextEditingController newPasswordController = TextEditingController();
   TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController= TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
+  bool _obscureText = true;
+  bool _obscureCText = true;
+
+  FocusNode _focusNode = FocusNode();
+  FocusNode _focusNodes = FocusNode();
+  Color? color;
 
   void _changePassword(String currentPassword, String newPassword) async {
     final user = await FirebaseAuth.instance.currentUser;
@@ -39,6 +46,16 @@ class _ubahPasswordState extends State<ubahPassword> {
 
   @override
   Widget build(BuildContext context) {
+    _focusNode.addListener(
+      () {
+        setState(
+          () {
+            color = _focusNode.hasFocus ? kHealthCareColor : Colors.black54;
+          },
+        );
+      },
+    );
+
     return Scaffold(
       backgroundColor: kBackgroundColor,
       appBar: AppBar(
@@ -69,30 +86,47 @@ class _ubahPasswordState extends State<ubahPassword> {
               SizedBox(
                 height: 25,
               ),
-              // Padding(
-              //   padding: EdgeInsets.symmetric(
-              //     horizontal: 30,
-              //     vertical: 10,
-              //   ),
-              //   child: TextField(
-              //     obscureText: true,
-              //     decoration: InputDecoration(
-              //       labelText: 'Password Awal',
-              //       hintText: 'Password Awal',
-              //     ),
-              //   ),
-              // ),
               Padding(
                 padding: EdgeInsets.symmetric(
                   horizontal: 30,
                   vertical: 10,
                 ),
                 child: TextField(
+                  focusNode: _focusNodes,
                   controller: currentPasswordController,
-                  obscureText: true,
+                  obscureText: _obscureText,
+                  cursorColor: kHealthCareColor,
                   decoration: InputDecoration(
                     labelText: 'Password Lama',
+                    labelStyle: TextStyle(
+                      color: _focusNodes.hasFocus
+                          ? kHealthCareColor
+                          : Colors.black54,
+                    ),
                     hintText: 'Masukkan password lama anda',
+                    focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: kHealthCareColor,
+                      ),
+                    ),
+                    enabledBorder: const UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Colors.black38,
+                      ),
+                    ),
+                    suffixIcon: GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          _obscureText = !_obscureText;
+                        });
+                      },
+                      child: Icon(
+                        _obscureText ? Icons.visibility : Icons.visibility_off,
+                        color: _focusNodes.hasFocus
+                            ? kHealthCareColor
+                            : Colors.black38,
+                      ),
+                    ),
                   ),
                 ),
               ),
@@ -102,11 +136,41 @@ class _ubahPasswordState extends State<ubahPassword> {
                   vertical: 10,
                 ),
                 child: TextField(
+                  focusNode: _focusNode,
                   controller: newPasswordController,
-                  obscureText: true,
+                  obscureText: _obscureCText,
+                  cursorColor: kHealthCareColor,
                   decoration: InputDecoration(
                     labelText: 'Password Baru',
+                    labelStyle: TextStyle(
+                      color: _focusNode.hasFocus
+                          ? kHealthCareColor
+                          : Colors.black54,
+                    ),
                     hintText: 'Masukkan password baru anda',
+                    focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: kHealthCareColor,
+                      ),
+                    ),
+                    enabledBorder: const UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Colors.black38,
+                      ),
+                    ),
+                    suffixIcon: GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          _obscureCText = !_obscureCText;
+                        });
+                      },
+                      child: Icon(
+                        _obscureCText ? Icons.visibility : Icons.visibility_off,
+                        color: _focusNode.hasFocus
+                            ? kHealthCareColor
+                            : Colors.black38,
+                      ),
+                    ),
                   ),
                 ),
               ),

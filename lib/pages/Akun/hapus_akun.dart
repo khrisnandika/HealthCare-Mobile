@@ -15,6 +15,10 @@ class _hapusPasswordState extends State<hapusPassword> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
+  FocusNode _focusNode = FocusNode();
+  FocusNode _focusNodes = FocusNode();
+  Color? color;
+
   void _deleteUser(String email, String password) async {
     User user = await FirebaseAuth.instance.currentUser!;
     AuthCredential credential =
@@ -40,13 +44,30 @@ class _hapusPasswordState extends State<hapusPassword> {
     try {
       FirebaseFirestore.instance.collection('users').doc(id).delete();
     } catch (e) {
-      UIHelper.showAlertDialog(
-          context, "Kesalahan terjadi", e.toString());
+      UIHelper.showAlertDialog(context, "Kesalahan terjadi", e.toString());
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    _focusNodes.addListener(
+      () {
+        setState(
+          () {
+            color = _focusNode.hasFocus ? kHealthCareColor : Colors.black54;
+          },
+        );
+      },
+    );
+    _focusNode.addListener(
+      () {
+        setState(
+          () {
+            color = _focusNode.hasFocus ? kHealthCareColor : Colors.black54;
+          },
+        );
+      },
+    );
     return Scaffold(
       backgroundColor: kBackgroundColor,
       appBar: AppBar(
@@ -83,24 +104,53 @@ class _hapusPasswordState extends State<hapusPassword> {
                   vertical: 10,
                 ),
                 child: TextField(
+                  focusNode: _focusNodes,
                   controller: emailController,
                   decoration: InputDecoration(
                     labelText: 'Email',
                     hintText: 'Masukkan email anda',
+                    labelStyle: TextStyle(
+                      color: _focusNodes.hasFocus
+                          ? kHealthCareColor
+                          : Colors.black54,
+                    ),
+                    focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: kHealthCareColor,
+                      ),
+                    ),
+                    enabledBorder: const UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Colors.black38,
+                      ),
+                    ),
                   ),
                 ),
               ),
               Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: 30,
-                  vertical: 10,
-                ),
+                padding: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
                 child: TextField(
                   controller: passwordController,
+                  focusNode: _focusNode,
                   obscureText: true,
                   decoration: InputDecoration(
                     labelText: 'Password',
                     hintText: 'Masukkan password anda',
+                    labelStyle: TextStyle(
+                      color: _focusNode.hasFocus
+                          ? kHealthCareColor
+                          : Colors.black54,
+                    ),
+                    focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: kHealthCareColor,
+                      ),
+                    ),
+                    enabledBorder: const UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Colors.black38,
+                      ),
+                    ),
                   ),
                 ),
               ),
