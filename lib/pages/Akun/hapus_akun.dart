@@ -104,6 +104,7 @@ class _hapusPasswordState extends State<hapusPassword> {
                   vertical: 10,
                 ),
                 child: TextField(
+                  cursorColor: kHealthCareColor,
                   focusNode: _focusNodes,
                   controller: emailController,
                   decoration: InputDecoration(
@@ -130,6 +131,7 @@ class _hapusPasswordState extends State<hapusPassword> {
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
                 child: TextField(
+                  cursorColor: kHealthCareColor,
                   controller: passwordController,
                   focusNode: _focusNode,
                   obscureText: true,

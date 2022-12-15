@@ -124,7 +124,7 @@ class _ubahPasswordState extends State<ubahPassword> {
                         _obscureText ? Icons.visibility : Icons.visibility_off,
                         color: _focusNodes.hasFocus
                             ? kHealthCareColor
-                            : Colors.black38,
+                            : Colors.black26,
                       ),
                     ),
                   ),
@@ -168,7 +168,7 @@ class _ubahPasswordState extends State<ubahPassword> {
                         _obscureCText ? Icons.visibility : Icons.visibility_off,
                         color: _focusNode.hasFocus
                             ? kHealthCareColor
-                            : Colors.black38,
+                            : Colors.black26,
                       ),
                     ),
                   ),
