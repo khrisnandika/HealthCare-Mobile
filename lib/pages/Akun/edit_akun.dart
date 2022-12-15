@@ -41,11 +41,10 @@ class _EditAkunState extends State<EditAkun> {
         .collection("users")
         .doc(_emailController.text)
         .update({
-          "fullname" : _namaController.text,
-          "address" : _alamatController.text,
-          "gender" : _genderController.text,
-
-        });
+      "fullname": _namaController.text,
+      "address": _alamatController.text,
+      "gender": _genderController.text,
+    });
   }
 
   Future editData() async {
@@ -180,6 +179,7 @@ class _EditAkunState extends State<EditAkun> {
               child: TextField(
                 controller: _emailController,
                 decoration: InputDecoration(
+                    filled: true,
                     enabled: false,
                     border: OutlineInputBorder(
                       borderRadius: new BorderRadius.circular(10),
@@ -205,6 +205,7 @@ class _EditAkunState extends State<EditAkun> {
               child: TextField(
                 controller: _alamatController..text = alamat,
                 decoration: InputDecoration(
+                    filled: true,
                     enabled: false,
                     border: OutlineInputBorder(
                       borderRadius: new BorderRadius.circular(10),
@@ -229,6 +230,7 @@ class _EditAkunState extends State<EditAkun> {
               child: TextField(
                 controller: _genderController..text = gender,
                 decoration: InputDecoration(
+                    filled: true,
                     enabled: false,
                     border: OutlineInputBorder(
                       borderRadius: new BorderRadius.circular(10),
@@ -248,7 +250,7 @@ class _EditAkunState extends State<EditAkun> {
             SizedBox(
               height: 20,
             ),
-            new SizedBox(
+            SizedBox(
               height: MediaQuery.of(context).size.height * 0.065,
               width: MediaQuery.of(context).size.width * 0.84,
               child: ElevatedButton(
