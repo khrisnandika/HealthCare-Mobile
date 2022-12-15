@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:healthcare/core/const.dart';
 import 'package:healthcare/pages/Akun/detail_setting.dart';
 import 'package:healthcare/pages/Akun/edit_akun.dart';
+import 'package:healthcare/pages/Akun/detail_faq.dart';
 import 'package:healthcare/pages/Akun/ubah_password.dart';
 import 'package:healthcare/pages/LoginRegister/login_pages.dart';
 
@@ -144,6 +145,7 @@ class _AkunProfileState extends State<AkunProfile> {
             SizedBox(
               height: 30,
             ),
+            _FaqButton(context),
             _settingButton(context),
             _logoutButton(context),
           ],
@@ -152,7 +154,67 @@ class _AkunProfileState extends State<AkunProfile> {
     );
   }
 
-  Column _settingButton(BuildContext context) {
+  Widget _FaqButton(BuildContext context) {
+    return Column(
+      children: [
+        Container(
+          width: 450,
+          height: 75,
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: 40,
+              vertical: 10,
+            ),
+            child: TextButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => FaqPage(),
+                  ),
+                );
+              },
+              style: TextButton.styleFrom(
+                backgroundColor: kGreyColor.withOpacity(0.1),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10)),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 15),
+                    child: Icon(
+                      Icons.question_answer,
+                      color: kHealthCareColor,
+                    ),
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Text(
+                    'Faq',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                  Spacer(),
+                  Icon(
+                    Icons.arrow_forward_ios,
+                    color: kTitleTextColor.withOpacity(0.3),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _settingButton(BuildContext context) {
     return Column(
       children: [
         Container(
@@ -214,7 +276,7 @@ class _AkunProfileState extends State<AkunProfile> {
     );
   }
 
-  Column _logoutButton(BuildContext context) {
+  Widget _logoutButton(BuildContext context) {
     return Column(
       children: [
         Container(

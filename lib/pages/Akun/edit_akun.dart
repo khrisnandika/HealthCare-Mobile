@@ -22,6 +22,7 @@ class _EditAkunState extends State<EditAkun> {
 
   String alamat = '';
   String gender = '';
+  String fullname = '';
 
   Future getDocId() async {
     var result = await _firebaseFirestore
@@ -29,9 +30,22 @@ class _EditAkunState extends State<EditAkun> {
         .where('uid', isEqualTo: user?.uid)
         .get();
     setState(() {
+      fullname = result.docs[0]['fullname'];
       alamat = result.docs[0]['address'];
       gender = result.docs[0]['gender'];
     });
+  }
+
+  Future updateData() async {
+    var result = await FirebaseFirestore.instance
+        .collection("users")
+        .doc(_emailController.text)
+        .update({
+          "fullname" : _namaController.text,
+          "address" : _alamatController.text,
+          "gender" : _genderController.text,
+
+        });
   }
 
   Future editData() async {
@@ -44,12 +58,7 @@ class _EditAkunState extends State<EditAkun> {
     } catch (e) {
       UIHelper.showAlertDialog(context, "Kesalahan terjadi", e.toString());
     }
-
     ;
-    // if(_emailController.text!=''){
-    //   user!.updateEmail(_emailController.text);
-    //   print('object');
-    // };
   }
 
   @override
@@ -159,7 +168,7 @@ class _EditAkunState extends State<EditAkun> {
                     labelText: 'Nama Lengkap',
                     labelStyle: GoogleFonts.montserrat(
                         color: kHealthCareColor, fontSize: 14),
-                    hintText: user!.displayName!,
+                    hintText: user!.displayName,
                     hintStyle: GoogleFonts.montserrat(fontSize: 14)),
               ),
             ),
@@ -243,7 +252,7 @@ class _EditAkunState extends State<EditAkun> {
               height: MediaQuery.of(context).size.height * 0.065,
               width: MediaQuery.of(context).size.width * 0.84,
               child: ElevatedButton(
-                onPressed: () async => await editData(),
+                onPressed: () async => editData(),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: kHealthCareColor,
                   shape: RoundedRectangleBorder(
