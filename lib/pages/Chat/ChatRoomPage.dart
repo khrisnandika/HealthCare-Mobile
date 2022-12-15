@@ -137,7 +137,7 @@ class _ChatRoomPageState extends State<ChatRoomPage> {
                                     : MainAxisAlignment.start,
                                 children: [
                                   Container(
-                                    margin: EdgeInsets.symmetric(vertical: 20),
+                                    margin: EdgeInsets.symmetric(vertical: 5),
                                     padding: EdgeInsets.symmetric(
                                       vertical: 10,
                                       horizontal: 10,
@@ -178,6 +178,9 @@ class _ChatRoomPageState extends State<ChatRoomPage> {
                     },
                   ),
                 ),
+              ),
+              const SizedBox(
+                height: 15,
               ),
               Container(
                 color: kBackgroundColor,

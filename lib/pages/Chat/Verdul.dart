@@ -13,9 +13,9 @@ import '../../models/ChatModels/UIHelper.dart';
 import '../../models/ChatModels/UserModel.dart';
 
 class Verdul extends StatefulWidget {
-  final CardMedis cardMedis;
+  // final CardMedis cardMedis;
 
-  Verdul(this.cardMedis);
+  // Verdul(this.cardMedis);
 
   @override
   _VerdulState createState() => _VerdulState();
