@@ -29,6 +29,10 @@ class _RegisterPageState extends State<RegisterPage> {
   bool _obscureText = true;
   bool _obscureCText = true;
 
+  final FocusNode _focusNode = FocusNode();
+  final FocusNode _focusNodes = FocusNode();
+  Color? color;
+
   void checkValues() {
     String email = emailController.text.trim();
     String password = passwordController.text.trim();
@@ -112,6 +116,24 @@ class _RegisterPageState extends State<RegisterPage> {
 
   @override
   Widget build(BuildContext context) {
+    _focusNode.addListener(
+      () {
+        setState(
+          () {
+            color = _focusNode.hasFocus ? kHealthCareColor : Colors.black54;
+          },
+        );
+      },
+    );
+    _focusNodes.addListener(
+      () {
+        setState(
+          () {
+            color = _focusNode.hasFocus ? kHealthCareColor : Colors.black54;
+          },
+        );
+      },
+    );
     return Scaffold(
       body: Container(
         child: SingleChildScrollView(
@@ -277,6 +299,7 @@ class _RegisterPageState extends State<RegisterPage> {
                               child: TextField(
                                 controller: passwordController,
                                 obscureText: _obscureText,
+                                focusNode: _focusNode,
                                 decoration: InputDecoration(
                                   hintText: "Password",
                                   border: InputBorder.none,
@@ -291,9 +314,11 @@ class _RegisterPageState extends State<RegisterPage> {
                                     },
                                     child: Icon(
                                       _obscureText
-                                          ? Icons.visibility
-                                          : Icons.visibility_off,
-                                      color: kGreyColor.withOpacity(0.5),
+                                          ? Icons.visibility_off
+                                          : Icons.visibility,
+                                      color: _focusNode.hasFocus
+                                          ? kHealthCareColor
+                                          : Colors.black26,
                                     ),
                                   ),
                                 ),
@@ -303,6 +328,7 @@ class _RegisterPageState extends State<RegisterPage> {
                               padding: EdgeInsets.all(8.0),
                               child: TextField(
                                 controller: cPasswordController,
+                                focusNode: _focusNodes,
                                 obscureText: _obscureCText,
                                 decoration: InputDecoration(
                                   hintText: "Konfirmasi Password",
@@ -318,9 +344,11 @@ class _RegisterPageState extends State<RegisterPage> {
                                     },
                                     child: Icon(
                                       _obscureCText
-                                          ? Icons.visibility
-                                          : Icons.visibility_off,
-                                      color: kGreyColor.withOpacity(0.5),
+                                          ? Icons.visibility_off
+                                          : Icons.visibility,
+                                      color: _focusNodes.hasFocus
+                                          ? kHealthCareColor
+                                          : Colors.black26,
                                     ),
                                   ),
                                 ),

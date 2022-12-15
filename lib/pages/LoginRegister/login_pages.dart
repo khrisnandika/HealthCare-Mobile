@@ -27,8 +27,11 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final passCtrl = Get.put(passwordController());
 
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
+  final FocusNode _focusNode = FocusNode();
+  Color? color;
 
   void checkValues() {
     String email = _emailController.text.trim();
@@ -102,6 +105,15 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
+    _focusNode.addListener(
+      () {
+        setState(
+          () {
+            color = _focusNode.hasFocus ? kHealthCareColor : Colors.black54;
+          },
+        );
+      },
+    );
     return Scaffold(
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
@@ -196,6 +208,7 @@ class _LoginPageState extends State<LoginPage> {
                                 padding: EdgeInsets.all(8.0),
                                 child: Obx(
                                   () => TextFormField(
+                                    focusNode: _focusNode,
                                     controller: _passwordController,
                                     obscureText: passCtrl.showPassword.value,
                                     decoration: InputDecoration(
@@ -205,9 +218,11 @@ class _LoginPageState extends State<LoginPage> {
                                         },
                                         child: Icon(
                                           passCtrl.showPassword.value
-                                              ? Icons.visibility
-                                              : Icons.visibility_off,
-                                          color: kGreyColor.withOpacity(0.5),
+                                              ? Icons.visibility_off
+                                              : Icons.visibility,
+                                          color: _focusNode.hasFocus
+                                          ? kHealthCareColor
+                                          : Colors.black26,
                                         ),
                                       ),
                                       border: InputBorder.none,
