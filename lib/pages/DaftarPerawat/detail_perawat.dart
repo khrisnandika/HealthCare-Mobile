@@ -92,7 +92,7 @@ class _DetailPerawatState extends State<DetailPerawat> {
                         Row(
                           children: [
                             Text("Poli : "),
-                            Text(widget.perawatApi.id_poli)
+                            Text(widget.perawatApi.nama_poli)
                           ],
                         ),
                         Row(
@@ -115,7 +115,7 @@ class _DetailPerawatState extends State<DetailPerawat> {
                           height: 16,
                         ),
                         Text(
-                          widget.perawatApi.about,
+                          "ini tentang saya",
                           style: TextStyle(
                             color: Colors.black38,
                           ),
