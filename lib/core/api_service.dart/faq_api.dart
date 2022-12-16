@@ -12,7 +12,7 @@ class Repository {
         Uri.parse(_baseUrl),
       );
       if (response.statusCode == 200) {
-        print(response.body);
+        // print(response.body);
         Iterable it = jsonDecode(response.body);
         List<Faq> album = it.map((e) => Faq.fromJson(e)).toList();
         return album;

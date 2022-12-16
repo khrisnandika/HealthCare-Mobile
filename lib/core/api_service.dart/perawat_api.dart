@@ -13,7 +13,6 @@ class RepoPerawat {
         Uri.parse(_baseUrl),
       );
       if (response.statusCode == 200) {
-        print(response.body);
         Iterable it = jsonDecode(response.body);
         List<PerawatApi> perawat_api = it.map((e) => PerawatApi.fromJson(e)).toList();
         return perawat_api;
