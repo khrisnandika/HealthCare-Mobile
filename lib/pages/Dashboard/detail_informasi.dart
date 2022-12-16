@@ -77,24 +77,6 @@ class _DetailInformasiState extends State<DetailInformasi> {
                         SizedBox(
                           height: 20,
                         ),
-                        Text(
-                          "FAQ",
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18,
-                            color: kTitleTextColor,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Text(
-                          widget.cardInformasi.faq,
-                          style: TextStyle(
-                            height: 1.6,
-                            color: kTitleTextColor.withOpacity(0.7),
-                          ),
-                        ),
                       ],
                     ),
                   ),

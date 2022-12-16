@@ -66,7 +66,7 @@ class _DashboardPageState extends State<DashboardPage> {
                       ),
                     ),
                     TextSpan(
-                      text: user!.displayName,
+                      text: user!.displayName.runtimeType == Null ? '-' : user!.displayName.toString(),
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 20,
