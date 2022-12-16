@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:healthcare/core/const.dart';
 import 'package:healthcare/core/flutter_icons.dart';
 import 'package:healthcare/pages/Akun/hapus_akun.dart';
@@ -73,7 +71,7 @@ class _DetailSettingState extends State<DetailSetting> {
                     ));
               },
               style: TextButton.styleFrom(
-                backgroundColor: kGreyColor.withOpacity(0.1),
+                backgroundColor: kHealthCareColor,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
                 ),
@@ -86,7 +84,7 @@ class _DetailSettingState extends State<DetailSetting> {
                     child: Text(
                       'Ubah password',
                       style: TextStyle(
-                          color: Colors.black,
+                          color: Colors.white,
                           fontSize: 16,
                           fontWeight: FontWeight.w400),
                     ),
@@ -96,7 +94,7 @@ class _DetailSettingState extends State<DetailSetting> {
                   ),
                   Icon(
                     Icons.arrow_forward_ios,
-                    color: kTitleTextColor.withOpacity(0.3),
+                    color: kBackgroundColor,
                   ),
                 ],
               ),
@@ -126,7 +124,7 @@ class _DetailSettingState extends State<DetailSetting> {
                       ));
                 },
                 style: TextButton.styleFrom(
-                  backgroundColor: kGreyColor.withOpacity(0.1),
+                  backgroundColor: kOrangeColor,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
@@ -139,7 +137,7 @@ class _DetailSettingState extends State<DetailSetting> {
                       child: Text(
                         'Hapus akun',
                         style: TextStyle(
-                            color: Colors.black,
+                            color: Colors.white,
                             fontSize: 16,
                             fontWeight: FontWeight.w400),
                       ),
@@ -149,7 +147,7 @@ class _DetailSettingState extends State<DetailSetting> {
                     ),
                     Icon(
                       Icons.arrow_forward_ios,
-                      color: kTitleTextColor.withOpacity(0.3),
+                      color: kBackgroundColor,
                     ),
                   ],
                 ),

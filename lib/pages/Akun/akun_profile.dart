@@ -38,6 +38,7 @@ class _AkunProfileState extends State<AkunProfile> {
   final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
   final User? user = FirebaseAuth.instance.currentUser;
   String fullname = '';
+  String profilepic = '';
 
   Future getDocId() async {
     var result = await _firebaseFirestore
@@ -46,6 +47,7 @@ class _AkunProfileState extends State<AkunProfile> {
         .get();
     setState(() {
       fullname = result.docs[0]['fullname'];
+      profilepic = result.docs[0]['profilepic'];
     });
   }
 
@@ -87,8 +89,8 @@ class _AkunProfileState extends State<AkunProfile> {
                     radius: 20,
                     backgroundColor: kHealthCareColor,
                     child: CircleAvatar(
-                      backgroundImage: AssetImage(
-                        'assets/image/avatar.png',
+                      backgroundImage: NetworkImage(
+                        profilepic,
                       ),
                       radius: 70,
                     ),

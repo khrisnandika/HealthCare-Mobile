@@ -23,6 +23,7 @@ class _EditAkunState extends State<EditAkun> {
   String alamat = '';
   String gender = '';
   String fullname = '';
+  String profilepic = '';
 
   Future getDocId() async {
     var result = await _firebaseFirestore
@@ -33,6 +34,7 @@ class _EditAkunState extends State<EditAkun> {
       fullname = result.docs[0]['fullname'];
       alamat = result.docs[0]['address'];
       gender = result.docs[0]['gender'];
+      profilepic = result.docs[0]['profilepic'];
     });
   }
 
@@ -117,9 +119,7 @@ class _EditAkunState extends State<EditAkun> {
                     radius: 20,
                     backgroundColor: kHealthCareColor,
                     child: CircleAvatar(
-                      backgroundImage: AssetImage(
-                        'assets/image/avatar.png',
-                      ),
+                      backgroundImage: NetworkImage(profilepic),
                       radius: 70,
                     ),
                   ),

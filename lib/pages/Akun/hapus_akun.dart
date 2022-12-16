@@ -15,8 +15,10 @@ class _hapusPasswordState extends State<hapusPassword> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
-  FocusNode _focusNode = FocusNode();
-  FocusNode _focusNodes = FocusNode();
+  bool _obscureText = true;
+  
+  final FocusNode _focusNode = FocusNode();
+  final FocusNode _focusNodes = FocusNode();
   Color? color;
 
   void _deleteUser(String email, String password) async {
@@ -134,7 +136,7 @@ class _hapusPasswordState extends State<hapusPassword> {
                   cursorColor: kHealthCareColor,
                   controller: passwordController,
                   focusNode: _focusNode,
-                  obscureText: true,
+                  obscureText: _obscureText,
                   decoration: InputDecoration(
                     labelText: 'Password',
                     hintText: 'Masukkan password anda',
@@ -151,6 +153,19 @@ class _hapusPasswordState extends State<hapusPassword> {
                     enabledBorder: const UnderlineInputBorder(
                       borderSide: BorderSide(
                         color: Colors.black38,
+                      ),
+                    ),
+                    suffixIcon: GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          _obscureText = !_obscureText;
+                        });
+                      },
+                      child: Icon(
+                        _obscureText ? Icons.visibility : Icons.visibility_off,
+                        color: _focusNode.hasFocus
+                            ? kHealthCareColor
+                            : Colors.black26,
                       ),
                     ),
                   ),

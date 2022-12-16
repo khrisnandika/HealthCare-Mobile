@@ -19,8 +19,8 @@ class _ubahPasswordState extends State<ubahPassword> {
   bool _obscureText = true;
   bool _obscureCText = true;
 
-  FocusNode _focusNode = FocusNode();
-  FocusNode _focusNodes = FocusNode();
+  final FocusNode _focusNode = FocusNode();
+  final FocusNode _focusNodes = FocusNode();
   Color? color;
 
   void _changePassword(String currentPassword, String newPassword) async {
