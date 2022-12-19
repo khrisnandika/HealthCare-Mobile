@@ -42,7 +42,7 @@ class _LoginPageState extends State<LoginPage> {
           context, "Data tidak lengkap", "Harap lengkapi semua kolom");
     } else {
       logIn(email, password);
-      prosesLogin();
+      // prosesLogin();
     }
   }
 
