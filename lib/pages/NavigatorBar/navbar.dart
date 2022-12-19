@@ -71,7 +71,7 @@ class _NavigasiBarState extends State<NavigasiBar> {
               ),
               GButton(
                 icon: Icons.person_outline,
-                text: 'Profil',
+                text: 'Akun',
               ),
             ],
           ),
