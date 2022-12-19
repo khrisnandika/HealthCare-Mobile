@@ -5,6 +5,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:healthcare/core/const.dart';
 import 'package:healthcare/core/flutter_icons.dart';
 import 'package:healthcare/models/ChatModels/UIHelper.dart';
+import 'package:healthcare/pages/Akun/akun_profile.dart';
+import 'package:healthcare/pages/NavigatorBar/navbar.dart';
 
 class EditAkun extends StatefulWidget {
   @override
@@ -19,6 +21,57 @@ class _EditAkunState extends State<EditAkun> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _alamatController = TextEditingController();
   final TextEditingController _genderController = TextEditingController();
+
+  void _alertDialog() async {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text("Edit Akun"),
+          content: SizedBox(
+            height: 95,
+            child: Column(
+              children: [
+                const Text("Apakah anda benar ingin mengedit akun?"),
+                const Spacer(),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    SizedBox(
+                      height: 38,
+                      width: 90,
+                      child: ElevatedButton(
+                        child: Text("Batal"),
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: kHealthCareColor,
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 38,
+                      width: 90,
+                      child: ElevatedButton(
+                        child: Text("Simpan"),
+                        onPressed: () {
+                          editData();
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: kdeleteColor,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
 
   String alamat = '';
   String gender = '';
@@ -38,23 +91,31 @@ class _EditAkunState extends State<EditAkun> {
     });
   }
 
-  Future updateData() async {
-    var result = await FirebaseFirestore.instance
-        .collection("users")
-        .doc(_emailController.text)
-        .update({
-      "fullname": _namaController.text,
-      "address": _alamatController.text,
-      "gender": _genderController.text,
-    });
-  }
+  // Future updateData() async {
+  //   var result = await FirebaseFirestore.instance
+  //       .collection("users")
+  //       .doc(_emailController.text)
+  //       .update({
+  //     "fullname": _namaController.text,
+  //     "address": _alamatController.text,
+  //     "gender": _genderController.text,
+  //   });
+  // }
 
-  Future editData() async {
+  void editData() async {
     try {
       if (_namaController.text != '') {
-        user?.updateDisplayName(_namaController.text);
-        UIHelper.showAlertDialog(
+        user?.updateDisplayName(_namaController.text).then((value) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => NavigasiBar(),
+            ),
+          );
+          UIHelper.showAlertDialog(
             context, "Berhasil", "Akun anda berhasil diubah !");
+        });
+        
       }
     } catch (e) {
       UIHelper.showAlertDialog(context, "Kesalahan terjadi", e.toString());
@@ -254,7 +315,9 @@ class _EditAkunState extends State<EditAkun> {
               height: MediaQuery.of(context).size.height * 0.065,
               width: MediaQuery.of(context).size.width * 0.84,
               child: ElevatedButton(
-                onPressed: () async => editData(),
+                onPressed: () {
+                  _alertDialog();
+                },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: kHealthCareColor,
                   shape: RoundedRectangleBorder(

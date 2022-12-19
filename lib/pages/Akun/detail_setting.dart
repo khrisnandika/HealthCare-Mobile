@@ -124,7 +124,7 @@ class _DetailSettingState extends State<DetailSetting> {
                       ));
                 },
                 style: TextButton.styleFrom(
-                  backgroundColor: kOrangeColor,
+                  backgroundColor: Color(0xffFA645D),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
