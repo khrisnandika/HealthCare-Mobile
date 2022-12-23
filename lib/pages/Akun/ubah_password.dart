@@ -60,7 +60,7 @@ class _ubahPasswordState extends State<ubahPassword> {
                           Navigator.pop(context);
                         },
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: kHealthCareColor,
+                          backgroundColor: kdeleteColor,
                         ),
                       ),
                     ),
@@ -68,13 +68,13 @@ class _ubahPasswordState extends State<ubahPassword> {
                       height: 38,
                       width: 90,
                       child: ElevatedButton(
-                        child: Text("Hapus"),
+                        child: Text("Simpan"),
                         onPressed: () {
                           _changePassword(currentPasswordController.text,
                               newPasswordController.text);
                         },
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: kdeleteColor,
+                          backgroundColor: kHealthCareColor,
                         ),
                       ),
                     ),

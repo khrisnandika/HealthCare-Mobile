@@ -46,7 +46,7 @@ class _EditAkunState extends State<EditAkun> {
                           Navigator.pop(context);
                         },
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: kHealthCareColor,
+                          backgroundColor: kdeleteColor,
                         ),
                       ),
                     ),
@@ -59,7 +59,7 @@ class _EditAkunState extends State<EditAkun> {
                           editData();
                         },
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: kdeleteColor,
+                          backgroundColor: kHealthCareColor,
                         ),
                       ),
                     ),
