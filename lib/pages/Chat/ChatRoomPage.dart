@@ -179,36 +179,94 @@ class _ChatRoomPageState extends State<ChatRoomPage> {
                   ),
                 ),
               ),
-              const SizedBox(
-                height: 15,
-              ),
-              Container(
-                color: kBackgroundColor,
-                padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
-                child: Row(
-                  children: [
-                    Flexible(
-                      child: TextField(
-                        cursorColor: kHealthCareColor,
-                        controller: messageController,
-                        maxLines: null,
-                        decoration: InputDecoration(
-                            border: InputBorder.none,
-                            hintText: "Tulis pesan.."),
-                      ),
+              Row(
+                children: [
+                  Container(
+                    width: MediaQuery.of(context).size.width * 0.85,
+                    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+                    child: Row(
+                      children: [
+                        Flexible(
+                          child: TextField(
+                            cursorColor: kHealthCareColor,
+                            controller: messageController,
+                            maxLines: null,
+                            decoration: InputDecoration(
+                              contentPadding:
+                                  EdgeInsets.symmetric(horizontal: 12),
+                              filled: true,
+                              fillColor: kWhiteColor,
+                              
+                              // border: OutlineInputBorder(
+                              //   borderSide: BorderSide(),
+                              //   borderRadius: BorderRadius.circular(20),
+                              // ),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(color: kWhiteColor),
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              focusedBorder: new OutlineInputBorder(
+                                borderRadius: new BorderRadius.circular(20),
+                                borderSide: BorderSide(
+                                  color: kWhiteColor,
+                                  
+                                ),
+                              ),
+                              hintText: "Tulis Pesan...",
+                              hintStyle: TextStyle(
+                                fontSize: 15,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
-                    IconButton(
-                      onPressed: () {
-                        sendMessage();
-                      },
-                      icon: Icon(
-                        Icons.send,
+                  ),
+                  GestureDetector(
+                    onTap: sendMessage,
+                    child: Container(
+                      width: MediaQuery.of(context).size.width *0.12,
+                      height: MediaQuery.of(context).size.height *0.1,
+                      decoration: BoxDecoration(
                         color: kHealthCareColor,
+                        shape: BoxShape.circle,
+                      ),
+                      child: Icon(
+                        Icons.send,
+                        color: kWhiteColor,
+                        size: 24,
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
+              // Container(
+              //   color: kBackgroundColor,
+              //   padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+              //   child: Row(
+              //     children: [
+              //       Flexible(
+              //         child: TextField(
+              //           cursorColor: kHealthCareColor,
+              //           controller: messageController,
+              //           maxLines: null,
+              //           decoration: InputDecoration(
+              //               border: InputBorder.none,
+              //               hintText: "Tulis pesan.."),
+              //         ),
+              //       ),
+              //       IconButton(
+              //         onPressed: () {
+              //           sendMessage();
+              //         },
+              //         icon: Icon(
+              //           Icons.send,
+              //           color: kHealthCareColor,
+              //         ),
+              //       ),
+              //     ],
+              //   ),
+              // ),
             ],
           ),
         ),
