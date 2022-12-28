@@ -4,7 +4,7 @@ import 'package:healthcare/models/ApiModels/faq.dart';
 import 'package:http/http.dart' as http;
 
 class Repository {
-  final _baseUrl = 'http://10.0.2.2/healthcare-admin/api/getFaq.php';
+  final _baseUrl = 'https://healthcare.wstif3b-bws.id/api/getFaq.php';
 
   Future getData() async {
     try {

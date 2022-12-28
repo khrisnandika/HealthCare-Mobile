@@ -5,7 +5,7 @@ import 'package:healthcare/models/ApiModels/perawat.dart';
 import 'package:http/http.dart' as http;
 
 class RepoPerawat {
-  final _baseUrl = 'http://10.0.2.2/healthcare-admin/api/listPerawat.php';
+  final _baseUrl = 'https://healthcare.wstif3b-bws.id/api/listPerawat.php';
 
   Future getData() async {
     try {
