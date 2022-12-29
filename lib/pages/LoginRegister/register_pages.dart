@@ -99,7 +99,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
   _simpan() async {
     final response = await http.post(
-      Uri.parse("http://10.0.2.2/healthcare-admin/api/insertPasien.php"),
+      Uri.parse("https://healthcare.wstif3b-bws.id/api/insertPasien.php"),
       body: {
         "nama": namaController.text,
         "jk": jkController.text,
