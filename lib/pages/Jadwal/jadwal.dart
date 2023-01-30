@@ -81,8 +81,8 @@ class _JadwalPageState extends State<JadwalPage> {
           children: [
             _isLoading
                 ? ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: 3,
+                    shrinkWrap: true,
+                    itemCount: 3,
                     itemBuilder: (context, index) {
                       return Column(
                         children: [
@@ -99,92 +99,189 @@ class _JadwalPageState extends State<JadwalPage> {
                     shrinkWrap: true,
                     itemCount: listJadwal.length,
                     itemBuilder: (context, index) {
-                      return Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 30, vertical: 8),
-                        child: DecoratedBox(
-                          decoration: BoxDecoration(
-                            color: kBlueColor.withOpacity(0.1),
-                            borderRadius: BorderRadius.circular(10),
+                      return Container(
+                        margin:
+                            EdgeInsets.only(left: 30, right: 30, bottom: 15),
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 24, vertical: 20),
+                        decoration: BoxDecoration(
+                          color: kBlueColor.withOpacity(0.1),
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(10),
                           ),
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 15, vertical: 20),
-                            child: ListTile(
-                              leading: Container(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 16),
-                                decoration: BoxDecoration(
-                                  color: kBlueColor.withOpacity(0.3),
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Icon(
-                                      Icons.calendar_month,
-                                      color: kTitleTextColor.withOpacity(0.6),
-                                    ),
-                                  ],
-                                ),
+                        ),
+                        child: Row(
+                          children: <Widget>[
+                            Container(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 16, vertical: 15),
+                              decoration: BoxDecoration(
+                                color: kBlueColor.withOpacity(0.3),
+                                borderRadius: BorderRadius.circular(10),
                               ),
-                              title: Column(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Row(
-                                    children: [
-                                      Text(
-                                        "${listJadwal[index].profesi} : ",
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.w700,
-                                          color: kTitleTextColor,
-                                        ),
-                                      ),
-                                      Text(
-                                        listJadwal[index].nama,
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.w700,
-                                          color: kTitleTextColor,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                              subtitle: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Row(
-                                    children: [
-                                      Text("Buka  : "),
-                                      Text(
-                                        listJadwal[index].jadwal_mulai,
-                                        style: TextStyle(
-                                          color:
-                                              kTitleTextColor.withOpacity(0.7),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  Row(
-                                    children: [
-                                      Text("Tutup : "),
-                                      Text(
-                                        listJadwal[index].jadwal_selesai,
-                                        style: TextStyle(
-                                          color:
-                                              kTitleTextColor.withOpacity(0.7),
-                                        ),
-                                      ),
-                                    ],
+                                  Icon(
+                                    Icons.calendar_month,
+                                    color: kTitleTextColor.withOpacity(0.6),
                                   ),
                                 ],
                               ),
                             ),
-                          ),
+                            SizedBox(
+                              width: 16,
+                            ),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  Container(
+                                    width:
+                                        MediaQuery.of(context).size.width * .5,
+                                    child: Text(
+                                      "${listJadwal[index].profesi} : ${listJadwal[index].nama}",
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 15,
+                                        height: 1.5,
+                                      ),
+                                    ),
+                                  ),
+                                  Text(
+                                    "Buka : ${listJadwal[index].jadwal_mulai}",
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: TextStyle(
+                                      color: Colors.black26,
+                                      fontSize: 13,
+                                    ),
+                                  ),
+                                  Text(
+                                    "Tutup : ${listJadwal[index].jadwal_selesai}",
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: TextStyle(
+                                      color: Colors.black26,
+                                      fontSize: 13,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
                         ),
                       );
                     },
-                  )
+                  ),
+            // _isLoading
+            //     ? ListView.builder(
+            //         shrinkWrap: true,
+            //         itemCount: 3,
+            //         itemBuilder: (context, index) {
+            //           return Column(
+            //             children: [
+            //               CardSkelton(),
+            //               SizedBox(
+            //                 height: 16,
+            //               ),
+            //             ],
+            //           );
+            //         },
+            //       )
+            //     : ListView.builder(
+            //         physics: BouncingScrollPhysics(),
+            //         shrinkWrap: true,
+            //         itemCount: listJadwal.length,
+            //         itemBuilder: (context, index) {
+            //           return Padding(
+            //             padding: const EdgeInsets.symmetric(
+            //                 horizontal: 30, vertical: 8),
+            //             child: DecoratedBox(
+            //               decoration: BoxDecoration(
+            //                 color: kBlueColor.withOpacity(0.1),
+            //                 borderRadius: BorderRadius.circular(10),
+            //               ),
+            //               child: Padding(
+            //                 padding: const EdgeInsets.symmetric(
+            //                     horizontal: 15, vertical: 20),
+            //                 child: ListTile(
+            //                   leading: Container(
+            //                     padding:
+            //                         const EdgeInsets.symmetric(horizontal: 16),
+            //                     decoration: BoxDecoration(
+            //                       color: kBlueColor.withOpacity(0.3),
+            //                       borderRadius: BorderRadius.circular(10),
+            //                     ),
+            //                     child: Column(
+            //                       mainAxisAlignment: MainAxisAlignment.center,
+            //                       children: [
+            //                         Icon(
+            //                           Icons.calendar_month,
+            //                           color: kTitleTextColor.withOpacity(0.6),
+            //                         ),
+            //                       ],
+            //                     ),
+            //                   ),
+            //                   title: Column(
+            //                     children: [
+            //                       Row(
+            //                         children: [
+            //                           Text(
+            //                             "${listJadwal[index].profesi} : ",
+            //                             style: TextStyle(
+            //                               fontWeight: FontWeight.w700,
+            //                               color: kTitleTextColor,
+            //                             ),
+            //                           ),
+            //                           Text(
+            //                             listJadwal[index].nama,
+            //                             style: TextStyle(
+            //                               fontWeight: FontWeight.w700,
+            //                               color: kTitleTextColor,
+            //                             ),
+            //                           ),
+            //                         ],
+            //                       ),
+            //                     ],
+            //                   ),
+            //                   subtitle: Column(
+            //                     crossAxisAlignment: CrossAxisAlignment.start,
+            //                     children: [
+            //                       Row(
+            //                         children: [
+            //                           Text("Buka  : "),
+            //                           Text(
+            //                             listJadwal[index].jadwal_mulai,
+            //                             style: TextStyle(
+            //                               color:
+            //                                   kTitleTextColor.withOpacity(0.7),
+            //                             ),
+            //                           ),
+            //                         ],
+            //                       ),
+            //                       Row(
+            //                         children: [
+            //                           Text("Tutup : "),
+            //                           Text(
+            //                             listJadwal[index].jadwal_selesai,
+            //                             style: TextStyle(
+            //                               color:
+            //                                   kTitleTextColor.withOpacity(0.7),
+            //                             ),
+            //                           ),
+            //                         ],
+            //                       ),
+            //                     ],
+            //                   ),
+            //                 ),
+            //               ),
+            //             ),
+            //           );
+            //         },
+            //       )
           ],
         ),
       ),
@@ -193,7 +290,7 @@ class _JadwalPageState extends State<JadwalPage> {
 
   Container CardSkelton() {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 50),
+      padding: EdgeInsets.symmetric(horizontal: 35),
       child: Row(
         children: [
           Skelton(
@@ -219,7 +316,7 @@ class _JadwalPageState extends State<JadwalPage> {
                   children: [
                     Skelton(width: 40, height: 13),
                     SizedBox(width: 10),
-                    Skelton(width: 150, height: 13),
+                    Skelton(width: 120, height: 13),
                   ],
                 ),
                 SizedBox(height: 8),
@@ -227,7 +324,7 @@ class _JadwalPageState extends State<JadwalPage> {
                   children: [
                     Skelton(width: 40, height: 13),
                     SizedBox(width: 10),
-                    Skelton(width: 150, height: 13),
+                    Skelton(width: 120, height: 13),
                   ],
                 ),
               ],

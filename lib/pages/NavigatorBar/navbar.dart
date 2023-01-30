@@ -58,7 +58,7 @@ class _NavigasiBarState extends State<NavigasiBar> {
             padding: EdgeInsets.all(10),
             tabs: const [
               GButton(
-                icon: Icons.dashboard_outlined,
+                icon: Icons.home_outlined,
                 text: 'Beranda',
               ),
               GButton(

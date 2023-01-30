@@ -40,7 +40,7 @@ class CardInformasi {
           "Familiar but always fresh, the iconic Air Jordan 1 is remastered for today's sneakerhead culture. This Retro High OG version goes all in with full-grain leather, comfortable cushioning and classic design details.",
       color: kBlueColor,
       imgPath: "assets/icons/dental_surgeon.png",
-      imgBg: "assets/image/gigi.png",
+      imgBg: "assets/image/dental.jpg",
     ),
     CardInformasi(
       poli: "Jantung",
@@ -50,7 +50,7 @@ class CardInformasi {
       faq: "lorem",
       color: kOrangeColor,
       imgPath: "assets/icons/heart_surgeon.png",
-      imgBg: "",
+      imgBg: "assets/image/hearth.jpg",
     ),
     CardInformasi(
       poli: "Mata",
@@ -59,7 +59,7 @@ class CardInformasi {
       faq: "lorem",
       color: kYellowColor,
       imgPath: "assets/icons/eye_specialist.png",
-      imgBg: "",
+      imgBg: "assets/image/eyehealth.jpg",
     ),
   ];
 }

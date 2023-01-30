@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:healthcare/core/const.dart';
 import 'package:healthcare/core/flutter_icons.dart';
 import 'package:healthcare/models/card_layanan.dart';
 import 'package:healthcare/widgets/app_clipper.dart';
@@ -52,60 +53,135 @@ class _DetailLayananState extends State<DetailLayanan> {
                 ),
               ),
             ),
-            Positioned(
-              bottom: 0,
-              child: Container(
-                height: MediaQuery.of(context).size.height * .8,
-                width: MediaQuery.of(context).size.width,
-                child: ClipPath(
-                  clipper: AppClipper(
-                    cornerSize: 50,
-                    diagonalHeight: 180,
-                    roundedBottom: false,
+            Container(
+              height: MediaQuery.of(context).size.height,
+              width: MediaQuery.of(context).size.width,
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.10,
                   ),
-                  child: Container(
-                    padding: EdgeInsets.only(top: 110, left: 20, right: 20),
-                    color: Colors.white,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          width: 200,
-                          child: Text(
-                            "${widget.cardLayanan.nama}",
-                            style: TextStyle(
-                              fontSize: 32,
+                  Expanded(
+                    child: ClipPath(
+                      clipper: AppClipper(
+                        cornerSize: 50,
+                        diagonalHeight: 180,
+                        roundedBottom: false,
+                      ),
+                      child: Container(
+                        width: MediaQuery.of(context).size.width,
+                        height: MediaQuery.of(context).size.height,
+                        decoration: BoxDecoration(
+                          color: kWhiteColor,
+                          borderRadius: BorderRadius.vertical(
+                            top: Radius.circular(50),
+                          ),
+                        ),
+                        child: SingleChildScrollView(
+                          child: Container(
+                            padding:
+                                EdgeInsets.only(top: 100, left: 20, right: 20),
+                            color: Colors.white,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Container(
+                                  width: 200,
+                                  child: Text(
+                                    "${widget.cardLayanan.nama}",
+                                    style: TextStyle(
+                                      fontSize: 32,
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 24,
+                                ),
+                                Text(
+                                  "Deskripsi",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 15,
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 16,
+                                ),
+                                Text(
+                                  "${widget.cardLayanan.desc}",
+                                  style: TextStyle(
+                                    color: Colors.black54,
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 24,
+                                ),
+                              ],
                             ),
                           ),
                         ),
-                        SizedBox(
-                          height: 24,
-                        ),
-                        Text(
-                          "Deskripsi",
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 15,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 16,
-                        ),
-                        Text(
-                          "${widget.cardLayanan.desc}",
-                          style: TextStyle(
-                            color: Colors.black54,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 24,
-                        ),
-                      ],
+                      ),
                     ),
                   ),
-                ),
+                ],
               ),
             ),
+            // Positioned(
+            //   bottom: 0,
+            //   child: Container(
+            //     height: MediaQuery.of(context).size.height * .8,
+            //     width: MediaQuery.of(context).size.width,
+            //     child: ClipPath(
+            //       clipper: AppClipper(
+            //         cornerSize: 50,
+            //         diagonalHeight: 180,
+            //         roundedBottom: false,
+            //       ),
+            //       child: SingleChildScrollView(
+            //         child: Container(
+            //           padding: EdgeInsets.only(top: 110, left: 20, right: 20),
+            //           color: Colors.white,
+            //           child: Column(
+            //             crossAxisAlignment: CrossAxisAlignment.start,
+            //             children: [
+            //               Container(
+            //                 width: 200,
+            //                 child: Text(
+            //                   "${widget.cardLayanan.nama}",
+            //                   style: TextStyle(
+            //                     fontSize: 32,
+            //                   ),
+            //                 ),
+            //               ),
+            //               SizedBox(
+            //                 height: 24,
+            //               ),
+            //               Text(
+            //                 "Deskripsi",
+            //                 style: TextStyle(
+            //                   fontWeight: FontWeight.bold,
+            //                   fontSize: 15,
+            //                 ),
+            //               ),
+            //               SizedBox(
+            //                 height: 16,
+            //               ),
+            //               Text(
+            //                 "${widget.cardLayanan.desc}",
+            //                 style: TextStyle(
+            //                   color: Colors.black54,
+            //                 ),
+            //               ),
+            //               SizedBox(
+            //                 height: 24,
+            //               ),
+            //             ],
+            //           ),
+            //         ),
+            //       ),
+            //     ),
+            //   ),
+            // ),
           ],
         ),
       ),

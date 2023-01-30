@@ -247,7 +247,7 @@ class _AkunProfileState extends State<AkunProfile> {
                     width: 10,
                   ),
                   Text(
-                    'Faq',
+                    'FAQ',
                     style: TextStyle(
                       color: Colors.black,
                       fontSize: 18,

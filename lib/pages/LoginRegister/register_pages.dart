@@ -150,7 +150,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 child: Stack(
                   children: <Widget>[
                     Positioned(
-                      right: 50,
+                      right: 20,
                       top: 25,
                       width: 300,
                       height: 200,

@@ -36,10 +36,17 @@ class _DetailInformasiState extends State<DetailInformasi> {
         child: Container(
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage(widget.cardInformasi.imgBg),
+              alignment: Alignment.topCenter,
+              fit: BoxFit.fitWidth,
+            ),
+          ),
           child: Column(
             children: [
               SizedBox(
-                height: MediaQuery.of(context).size.height * 0.10,
+                height: MediaQuery.of(context).size.height * 0.27,
               ),
               Expanded(
                 child: Container(
